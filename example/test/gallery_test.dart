@@ -15,6 +15,13 @@ void main() {
       await tester.pumpAndSettle();
       final first = galleryComponents.first;
       expect(find.text(first.name), findsWidgets);
+      await tester.scrollUntilVisible(
+        find.text('Star on GitHub'),
+        200,
+        scrollable: find.byType(Scrollable).last,
+      );
+      expect(find.text('@LucasGoldner'), findsOneWidget);
+      expect(find.text('lucas-goldner.com'), findsOneWidget);
 
       await tester.tap(find.text(first.name).last);
       await tester.pumpAndSettle();

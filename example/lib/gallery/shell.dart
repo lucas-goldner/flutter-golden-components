@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import 'code_view.dart';
 import 'controls.dart';
+import 'links.dart';
 import 'registry.dart';
 import 'theme.dart';
 
@@ -76,12 +77,7 @@ class _Sidebar extends StatelessWidget {
             Container(height: 1, color: p.border),
             Padding(
               padding: const EdgeInsets.all(14),
-              child: Row(
-                children: [
-                  Expanded(child: Text('widgets library only', style: GalleryText.value(p))),
-                  const ThemeToggle(),
-                ],
-              ),
+              child: Row(children: [const SidebarLinks(), const Spacer(), const ThemeToggle()]),
             ),
           ],
         ),
@@ -355,6 +351,8 @@ class HomePage extends StatelessWidget {
                         );
                       },
                     ),
+                    const SizedBox(height: 28),
+                    const InfoSection(),
                   ],
                 ),
               ),
