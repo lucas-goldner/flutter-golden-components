@@ -14,8 +14,8 @@ import 'package:flutter/widgets.dart';
 ///
 /// The caret is measured from the field's own text layout, so it follows
 /// typing, deleting, arrow keys, taps, scrolling and line wraps. While it
-/// travels it stretches along the direction of motion and squashes slightly;
-/// at rest it blinks with a soft fade.
+/// travels it leaves a soft motion trail and squashes slightly; at rest it
+/// blinks with a soft fade.
 class SmoothCaretField extends StatefulWidget {
   /// Creates a text input with a spring-animated caret.
   const SmoothCaretField({
@@ -31,7 +31,7 @@ class SmoothCaretField extends StatefulWidget {
     this.caretRadius = 2,
     this.spring = const SpringDescription(mass: 1, stiffness: 520, damping: 34),
     this.stretch = 0.012,
-    this.maxStretch = 14,
+    this.maxStretch = 28,
     this.squash = 0.0004,
     this.maxSquash = 0.25,
     this.glowRadius = 6,
@@ -82,11 +82,11 @@ class SmoothCaretField extends StatefulWidget {
   /// Spring that drives the caret between positions.
   final SpringDescription spring;
 
-  /// How much the caret widens per logical pixel / second of horizontal
-  /// velocity. Set to 0 to disable stretching.
+  /// How long the motion trail behind the moving caret gets per logical
+  /// pixel / second of horizontal velocity. Set to 0 to disable the trail.
   final double stretch;
 
-  /// Upper bound for the extra width added by [stretch].
+  /// Upper bound for the trail length added by [stretch].
   final double maxStretch;
 
   /// How much the caret shortens per logical pixel / second of speed.
@@ -433,16 +433,40 @@ class _Caret extends StatelessWidget {
             final squash = moving ? math.min(field.maxSquash, speed * field.squash) : 0.0;
             final height = lineHeight * (1 - squash);
             final color = field.caretColor;
-            return Stack(
-              children: [
-                Positioned(
-                  // Grow the caret behind its direction of travel, like a trail.
-                  left: x.value - origin.dx - (vx > 0 ? extra : 0),
-                  top: y.value - origin.dy + (lineHeight - height) / 2,
-                  width: field.caretWidth + extra,
-                  height: height,
-                  child: Opacity(
-                    opacity: _opacity.clamp(0.0, 1.0),
+            final left = x.value - origin.dx;
+            final top = y.value - origin.dy + (lineHeight - height) / 2;
+            final right = vx > 0;
+            return Opacity(
+              opacity: _opacity.clamp(0.0, 1.0),
+              child: Stack(
+                children: [
+                  // Motion trail behind the direction of travel, fading out
+                  // towards its tail like motion blur.
+                  if (extra > 0.5)
+                    Positioned(
+                      left: right ? left - extra : left + field.caretWidth,
+                      top: top + height * 0.1,
+                      width: extra,
+                      height: height * 0.8,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(height),
+                          gradient: LinearGradient(
+                            begin: right ? Alignment.centerLeft : Alignment.centerRight,
+                            end: right ? Alignment.centerRight : Alignment.centerLeft,
+                            colors: [
+                              color.withValues(alpha: 0),
+                              color.withValues(alpha: color.a * 0.55),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  Positioned(
+                    left: left,
+                    top: top,
+                    width: field.caretWidth,
+                    height: height,
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         color: color,
@@ -457,8 +481,8 @@ class _Caret extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         ),

@@ -1,0 +1,3 @@
+tags:
+  golden:
+    description: Golden image tests. Regenerate with `flutter test --tags golden --update-goldens` (on Linux).

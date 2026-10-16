@@ -10,10 +10,17 @@ import 'theme.dart';
 
 final Map<String, Future<String>> _sourceCache = {};
 
+/// Forgets loaded sources. Tests call this so a load started under fake time
+/// in an earlier test is not reused.
+@visibleForTesting
+void clearComponentSourceCache() => _sourceCache.clear();
+
 /// Loads a component's source, which the package ships as an asset.
 Future<String> loadComponentSource(GalleryComponent component, {AssetBundle? bundle}) {
+  // Cached here, so skip the bundle's own cache (one cache to clear in tests).
   return _sourceCache[component.sourceAsset] ??= (bundle ?? rootBundle).loadString(
     component.sourceAsset,
+    cache: false,
   );
 }
 

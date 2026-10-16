@@ -26,8 +26,16 @@ class _Host extends StatelessWidget {
   }
 }
 
-Finder _caret() =>
-    find.descendant(of: find.byType(SmoothCaretField), matching: find.byType(DecoratedBox));
+/// The caret head: the solid box. (The motion trail is a gradient box.)
+Finder _caret() => find.descendant(
+  of: find.byType(SmoothCaretField),
+  matching: find.byWidgetPredicate(
+    (w) =>
+        w is DecoratedBox &&
+        w.decoration is BoxDecoration &&
+        (w.decoration as BoxDecoration).color != null,
+  ),
+);
 
 void main() {
   testWidgets('caret only shows while focused', (tester) async {

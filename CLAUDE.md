@@ -34,9 +34,16 @@ Flutter/Dart skills in `.claude/skills/` whenever the two disagree.
 3. **New component checklist:**
    - Add its folder to `flutter: assets:` in the root `pubspec.yaml` so the
      gallery's Code tab and Copy button can load the source.
-   - Add tests in `test/`.
+   - Add unit tests (`test/<name>_*_test.dart`) and golden tests
+     (`test/goldens/<name>_*_golden_test.dart`) covering its states and its
+     animation over time (frame sheets via `golden_utils.dart`). Generate
+     with `flutter test --tags golden --update-goldens` and look at every
+     image before committing.
+   - Regenerate the gallery goldens in `example/` too (they pick the new
+     component up from the registry).
    - Add a playground with settings for its behaviour and register it with
      its `sourcePath`.
+   (`test/component_checklist_test.dart` enforces assets, tests and goldens.)
 
 ## Dart style (Effective Dart)
 
@@ -66,3 +73,6 @@ flutter test
 ```
 
 `example/` additionally: `flutter build web --release` must succeed.
+
+Goldens are generated on Linux. Only update them for intentional visual
+changes, and say so in the commit message.

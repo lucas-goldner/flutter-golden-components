@@ -13,7 +13,11 @@ void main() {
 
 /// The component gallery, built with the widgets library only.
 class GalleryApp extends StatefulWidget {
-  const GalleryApp({super.key});
+  const GalleryApp({super.key, this.fontFamily});
+
+  /// Overrides the platform's default font. Golden tests set this so text
+  /// renders with a real, bundled font instead of the test font.
+  final String? fontFamily;
 
   @override
   State<GalleryApp> createState() => _GalleryAppState();
@@ -76,7 +80,7 @@ class _GalleryAppState extends State<GalleryApp> with WidgetsBindingObserver {
         title: 'Golden Components',
         color: palette.accent,
         debugShowCheckedModeBanner: false,
-        textStyle: TextStyle(fontSize: 14, color: palette.text),
+        textStyle: TextStyle(fontFamily: widget.fontFamily, fontSize: 14, color: palette.text),
         onGenerateRoute: _route,
         // Deep links like /smooth-caret open that component directly
         // instead of stacking it on top of the home page.

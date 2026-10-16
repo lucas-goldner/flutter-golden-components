@@ -47,7 +47,7 @@ final List<GalleryComponent> galleryComponents = [
     name: 'Smooth Caret',
     description:
         'A text input whose caret glides to each new cursor position on a spring, '
-        'stretching while it travels and blinking with a soft fade at rest.',
+        'leaving a soft motion trail as it travels and blinking with a soft fade at rest.',
     tags: const ['input', 'text', 'spring'],
     sourcePath: 'lib/src/smooth_caret/smooth_caret_field.dart',
     builder: (context) => const SmoothCaretDemo(),

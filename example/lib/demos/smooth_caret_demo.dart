@@ -90,7 +90,7 @@ class _SmoothCaretDemoState extends State<SmoothCaretDemo> {
     _glow = 6;
     _glowOpacity = 0.35;
     _stretch = 0.012;
-    _maxStretch = 14;
+    _maxStretch = 28;
     _squash = 0.0004;
     _blink = true;
     _blinkMs = 1000;
@@ -254,7 +254,7 @@ class _SmoothCaretDemoState extends State<SmoothCaretDemo> {
           title: 'Motion',
           children: [
             SliderControl(
-              label: 'Stretch',
+              label: 'Trail',
               value: _stretch,
               min: 0,
               max: 0.05,
@@ -263,10 +263,10 @@ class _SmoothCaretDemoState extends State<SmoothCaretDemo> {
               onChanged: (v) => _set(() => _stretch = v),
             ),
             SliderControl(
-              label: 'Max stretch',
+              label: 'Max trail',
               value: _maxStretch,
               min: 0,
-              max: 40,
+              max: 80,
               step: 1,
               format: (v) => '${v.round()} px',
               onChanged: (v) => _set(() => _maxStretch = v),
@@ -402,7 +402,11 @@ class _Preview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = GalleryTheme.paletteOf(context);
-    final style = TextStyle(fontSize: fontSize, height: 1.4, color: p.text);
+    // EditableText doesn't inherit DefaultTextStyle, so merge it in to pick
+    // up the app's font.
+    final style = DefaultTextStyle.of(
+      context,
+    ).style.merge(TextStyle(fontSize: fontSize, height: 1.4, color: p.text));
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
