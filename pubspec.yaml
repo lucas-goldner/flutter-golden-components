@@ -16,3 +16,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+
+flutter:
+  # Component sources ship as assets so the gallery can show and copy them.
+  assets:
+    - lib/src/smooth_caret/

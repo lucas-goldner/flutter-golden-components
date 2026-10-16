@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/widgets.dart';
 
+import 'code_view.dart';
 import 'controls.dart';
 import 'registry.dart';
 import 'theme.dart';
@@ -388,10 +389,19 @@ class _Tags extends StatelessWidget {
 }
 
 /// A component's page: header plus its playground.
-class ComponentPage extends StatelessWidget {
+class ComponentPage extends StatefulWidget {
   const ComponentPage({super.key, required this.component});
 
   final GalleryComponent component;
+
+  @override
+  State<ComponentPage> createState() => _ComponentPageState();
+}
+
+class _ComponentPageState extends State<ComponentPage> {
+  bool _showCode = false;
+
+  GalleryComponent get component => widget.component;
 
   @override
   Widget build(BuildContext context) {
@@ -463,10 +473,87 @@ class ComponentPage extends StatelessWidget {
                 ],
               ),
             ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(wide ? 24 : 16, 0, 16, 14),
+              child: Row(
+                children: [
+                  _ViewTabs(showCode: _showCode, onChanged: (v) => setState(() => _showCode = v)),
+                  const Spacer(),
+                  CopyCodeButton(component: component, compact: !wide),
+                ],
+              ),
+            ),
             Container(height: 1, color: p.border),
-            Expanded(child: component.builder(context)),
+            Expanded(
+              // IndexedStack keeps the playground's settings while the code
+              // is shown.
+              child: IndexedStack(
+                index: _showCode ? 1 : 0,
+                sizing: StackFit.expand,
+                children: [
+                  component.builder(context),
+                  CodeView(component: component),
+                ],
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Preview / Code switch in the component header.
+class _ViewTabs extends StatelessWidget {
+  const _ViewTabs({required this.showCode, required this.onChanged});
+
+  final bool showCode;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = GalleryTheme.paletteOf(context);
+    Widget tab(String label, bool code) {
+      final selected = showCode == code;
+      return Semantics(
+        button: true,
+        selected: selected,
+        child: Pressable(
+          onTap: () => onChanged(code),
+          builder: (context, hover, pressed) => AnimatedContainer(
+            duration: const Duration(milliseconds: 160),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: selected ? p.surface : (hover ? p.surface.withValues(alpha: 0.4) : null),
+              borderRadius: BorderRadius.circular(7),
+              boxShadow: [
+                if (selected)
+                  BoxShadow(
+                    color: const Color(0xFF000000).withValues(alpha: 0.12),
+                    blurRadius: 4,
+                    offset: const Offset(0, 1),
+                  ),
+              ],
+            ),
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+                color: selected ? p.text : p.muted,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(color: p.surfaceAlt, borderRadius: BorderRadius.circular(9)),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [tab('Preview', false), tab('Code', true)],
       ),
     );
   }

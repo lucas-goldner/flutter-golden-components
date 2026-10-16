@@ -11,6 +11,7 @@ class GalleryComponent {
     required this.name,
     required this.description,
     required this.tags,
+    required this.sourcePath,
     required this.builder,
   });
 
@@ -23,10 +24,18 @@ class GalleryComponent {
   final String description;
   final List<String> tags;
 
+  /// Path of the component's source inside the package, e.g.
+  /// `lib/src/smooth_caret/smooth_caret_field.dart`. Its folder must be
+  /// listed under `flutter: assets:` in the package's pubspec.yaml.
+  final String sourcePath;
+
   /// Builds the playground (preview + settings) for this component.
   final WidgetBuilder builder;
 
   String get route => '/$slug';
+
+  /// Asset key the gallery loads [sourcePath] from.
+  String get sourceAsset => 'packages/flutter_golden_components/$sourcePath';
   String get badge => number.toString().padLeft(3, '0');
 }
 
@@ -40,6 +49,7 @@ final List<GalleryComponent> galleryComponents = [
         'A text input whose caret glides to each new cursor position on a spring, '
         'stretching while it travels and blinking with a soft fade at rest.',
     tags: const ['input', 'text', 'spring'],
+    sourcePath: 'lib/src/smooth_caret/smooth_caret_field.dart',
     builder: (context) => const SmoothCaretDemo(),
   ),
 ];

@@ -40,7 +40,8 @@ wrap it in whatever padding, border or background fits your design.
 
 `example/` is the gallery app. It runs on **web, iOS and macOS**, and every
 component has a settings panel (sliders, toggles, presets, colors) to adjust
-its behaviour live. The gallery chrome itself is also widgets-only.
+its behaviour live, plus a **Code** tab showing its syntax-highlighted Dart
+source and a **Copy code** button. The gallery chrome itself is also widgets-only.
 
 ```sh
 cd example
@@ -68,10 +69,12 @@ connected in Vercel.
 1. Put the widget in `lib/src/<name>/` and export it from
    `lib/flutter_golden_components.dart`. Import only
    `package:flutter/widgets.dart` (or lower layers).
-2. Add tests in `test/`.
-3. Add a playground in `example/lib/demos/` using the controls in
-   `example/lib/gallery/controls.dart`, and register it in
-   `example/lib/gallery/registry.dart`.
+2. List `lib/src/<name>/` under `flutter: assets:` in `pubspec.yaml`, so the
+   gallery can show and copy its source.
+3. Add tests in `test/`.
+4. Add a playground in `example/lib/demos/` using the controls in
+   `example/lib/gallery/controls.dart`, and register it (with its
+   `sourcePath`) in `example/lib/gallery/registry.dart`.
 
 ## License
 
