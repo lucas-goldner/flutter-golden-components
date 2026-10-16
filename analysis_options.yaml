@@ -1,0 +1,11 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - example/**
+    - build/**
+
+linter:
+  rules:
+    - prefer_single_quotes
+    - public_member_api_docs
