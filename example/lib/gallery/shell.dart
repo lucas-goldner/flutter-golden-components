@@ -143,18 +143,7 @@ class _Logo extends StatelessWidget {
     final p = GalleryTheme.paletteOf(context);
     return Row(
       children: [
-        Container(
-          width: 26,
-          height: 26,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFFFDE68A), Color(0xFFF5C451), Color(0xFFB7800A)],
-            ),
-          ),
-        ),
+        const SizedBox.square(dimension: 28, child: CustomPaint(painter: _LogoMarkPainter())),
         const SizedBox(width: 10),
         Flexible(
           child: Text(
@@ -166,6 +155,62 @@ class _Logo extends StatelessWidget {
       ],
     );
   }
+}
+
+/// The Golden Components mark: a gold chevron on a dark tile. Same shape as
+/// `scripts/og/icon.js`, which renders the favicon and app icons.
+class _LogoMarkPainter extends CustomPainter {
+  const _LogoMarkPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.scale(size.width / 64);
+    const tile = Rect.fromLTWH(0, 0, 64, 64);
+    final rrect = RRect.fromRectAndRadius(tile, const Radius.circular(14));
+    canvas.drawRRect(
+      rrect,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF1C1A16), Color(0xFF0A0A0C)],
+        ).createShader(tile),
+    );
+    canvas.drawRRect(
+      rrect.deflate(0.75),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5
+        ..color = const Color(0x38F5C451),
+    );
+    // Mark, scaled 0.86 around (32, 33) like the SVG.
+    canvas
+      ..translate(32, 33)
+      ..scale(0.86)
+      ..translate(-32, -33);
+    final gold = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 8.5
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..shader = const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color(0xFFFDE68A), Color(0xFFF5C451), Color(0xFFC98A12)],
+      ).createShader(const Rect.fromLTWH(19, 13, 22, 40));
+    canvas
+      ..drawLine(const Offset(41, 13), const Offset(19, 35), gold)
+      ..drawPath(
+        Path()
+          ..moveTo(41, 31)
+          ..lineTo(29.5, 42.5)
+          ..lineTo(40, 53),
+        gold,
+      );
+  }
+
+  @override
+  bool shouldRepaint(_LogoMarkPainter oldDelegate) => false;
 }
 
 /// Switches between light and dark.

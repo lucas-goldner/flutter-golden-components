@@ -4,7 +4,7 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0A0A0C",
-    "theme_color": "#F5C451",
+    "theme_color": "#0A0A0C",
     "description": "Polished, animated Flutter components built with only the widgets library.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,

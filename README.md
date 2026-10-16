@@ -68,6 +68,16 @@ with no extra configuration:
 Every push to the production branch redeploys automatically once the repo is
 connected in Vercel.
 
+### Social card and icons
+
+`example/web/og.png` (the Open Graph / Twitter image), the favicon, the web
+app icons and the iOS/macOS app icons are all rendered from `scripts/og/`:
+`og.html` for the card and `icon.js` for the mark. After changing either, run:
+
+```sh
+NODE_PATH=$(npm root -g) node scripts/og/render.js   # needs playwright
+```
+
 ## Adding a component
 
 1. Put the widget in `lib/src/<name>/` and export it from
