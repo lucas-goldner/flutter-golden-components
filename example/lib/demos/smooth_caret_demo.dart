@@ -135,88 +135,32 @@ class _SmoothCaretDemoState extends State<SmoothCaretDemo> {
     }
   }
 
-  SmoothCaretField _field({
-    required TextEditingController controller,
-    required FocusNode focus,
-    required TextStyle style,
-    required bool multiline,
-  }) {
-    return SmoothCaretField(
-      controller: controller,
-      focusNode: focus,
-      style: style,
-      placeholder: 'Type something...',
-      caretColor: _color,
-      caretWidth: _width,
-      caretRadius: _radius,
+  @override
+  Widget build(BuildContext context) {
+    final settings = _CaretSettings(
+      color: _color,
+      width: _width,
+      radius: _radius,
       spring: SpringDescription(mass: _mass, stiffness: _stiffness, damping: _damping),
       stretch: _stretch,
       maxStretch: _maxStretch,
       squash: _squash,
-      glowRadius: _glow,
+      glow: _glow,
       glowOpacity: _glowOpacity,
       blink: _blink,
       blinkPeriod: Duration(milliseconds: _blinkMs.round()),
       blinkDelay: Duration(milliseconds: _blinkDelayMs.round()),
-      minLines: multiline ? 3 : null,
-      maxLines: multiline ? 6 : 1,
     );
-  }
-
-  Widget _preview(GalleryPalette p) {
-    final style = TextStyle(fontSize: _fontSize, height: 1.4, color: p.text);
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 520),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (_layout != _Layout.multi)
-                _FieldCard(
-                  label: 'Single line',
-                  focus: _singleFocus,
-                  accent: _color,
-                  child: _field(
-                    controller: _single,
-                    focus: _singleFocus,
-                    style: style,
-                    multiline: false,
-                  ),
-                ),
-              if (_layout == _Layout.both) const SizedBox(height: 16),
-              if (_layout != _Layout.single)
-                _FieldCard(
-                  label: 'Multi-line',
-                  focus: _multiFocus,
-                  accent: _color,
-                  child: _field(
-                    controller: _multi,
-                    focus: _multiFocus,
-                    style: style.copyWith(fontSize: _fontSize * 0.85),
-                    multiline: true,
-                  ),
-                ),
-              const SizedBox(height: 14),
-              Text(
-                'Tap a field, then move the cursor with taps or arrow keys.',
-                textAlign: TextAlign.center,
-                style: GalleryText.body(p).copyWith(fontSize: 12),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final p = GalleryTheme.paletteOf(context);
     return Playground(
-      preview: _preview(p),
+      preview: _Preview(
+        settings: settings,
+        layout: _layout,
+        fontSize: _fontSize,
+        single: _single,
+        multi: _multi,
+        singleFocus: _singleFocus,
+        multiFocus: _multiFocus,
+      ),
       onReset: () => _set(_reset),
       controls: [
         ControlSection(
@@ -399,6 +343,153 @@ class _SmoothCaretDemoState extends State<SmoothCaretDemo> {
           ],
         ),
       ],
+    );
+  }
+}
+
+/// Snapshot of the caret settings chosen in the panel.
+@immutable
+class _CaretSettings {
+  const _CaretSettings({
+    required this.color,
+    required this.width,
+    required this.radius,
+    required this.spring,
+    required this.stretch,
+    required this.maxStretch,
+    required this.squash,
+    required this.glow,
+    required this.glowOpacity,
+    required this.blink,
+    required this.blinkPeriod,
+    required this.blinkDelay,
+  });
+
+  final Color color;
+  final double width;
+  final double radius;
+  final SpringDescription spring;
+  final double stretch;
+  final double maxStretch;
+  final double squash;
+  final double glow;
+  final double glowOpacity;
+  final bool blink;
+  final Duration blinkPeriod;
+  final Duration blinkDelay;
+}
+
+/// The preview stage: one or two field cards plus a hint.
+class _Preview extends StatelessWidget {
+  const _Preview({
+    required this.settings,
+    required this.layout,
+    required this.fontSize,
+    required this.single,
+    required this.multi,
+    required this.singleFocus,
+    required this.multiFocus,
+  });
+
+  final _CaretSettings settings;
+  final _Layout layout;
+  final double fontSize;
+  final TextEditingController single;
+  final TextEditingController multi;
+  final FocusNode singleFocus;
+  final FocusNode multiFocus;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = GalleryTheme.paletteOf(context);
+    final style = TextStyle(fontSize: fontSize, height: 1.4, color: p.text);
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 520),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (layout != _Layout.multi)
+                _FieldCard(
+                  label: 'Single line',
+                  focus: singleFocus,
+                  accent: settings.color,
+                  child: _DemoField(
+                    settings: settings,
+                    controller: single,
+                    focus: singleFocus,
+                    style: style,
+                    multiline: false,
+                  ),
+                ),
+              if (layout == _Layout.both) const SizedBox(height: 16),
+              if (layout != _Layout.single)
+                _FieldCard(
+                  label: 'Multi-line',
+                  focus: multiFocus,
+                  accent: settings.color,
+                  child: _DemoField(
+                    settings: settings,
+                    controller: multi,
+                    focus: multiFocus,
+                    style: style.copyWith(fontSize: fontSize * 0.85),
+                    multiline: true,
+                  ),
+                ),
+              const SizedBox(height: 14),
+              Text(
+                'Tap a field, then move the cursor with taps or arrow keys.',
+                textAlign: TextAlign.center,
+                style: GalleryText.body(p).copyWith(fontSize: 12),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A [SmoothCaretField] configured from [_CaretSettings].
+class _DemoField extends StatelessWidget {
+  const _DemoField({
+    required this.settings,
+    required this.controller,
+    required this.focus,
+    required this.style,
+    required this.multiline,
+  });
+
+  final _CaretSettings settings;
+  final TextEditingController controller;
+  final FocusNode focus;
+  final TextStyle style;
+  final bool multiline;
+
+  @override
+  Widget build(BuildContext context) {
+    return SmoothCaretField(
+      controller: controller,
+      focusNode: focus,
+      style: style,
+      placeholder: 'Type something...',
+      caretColor: settings.color,
+      caretWidth: settings.width,
+      caretRadius: settings.radius,
+      spring: settings.spring,
+      stretch: settings.stretch,
+      maxStretch: settings.maxStretch,
+      squash: settings.squash,
+      glowRadius: settings.glow,
+      glowOpacity: settings.glowOpacity,
+      blink: settings.blink,
+      blinkPeriod: settings.blinkPeriod,
+      blinkDelay: settings.blinkDelay,
+      minLines: multiline ? 3 : null,
+      maxLines: multiline ? 6 : 1,
     );
   }
 }

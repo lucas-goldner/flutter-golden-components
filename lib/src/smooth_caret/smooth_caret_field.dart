@@ -306,70 +306,6 @@ class _SmoothCaretFieldState extends State<SmoothCaretField>
     });
   }
 
-  /// Opacity over one blink cycle: hold, fade out, hold, fade in.
-  double _blinkOpacity() {
-    if (!_blink.isAnimating) return 1;
-    final t = _blink.value;
-    if (t < 0.45) return 1;
-    if (t < 0.55) return 1 - (t - 0.45) / 0.1;
-    if (t < 0.95) return 0;
-    return (t - 0.95) / 0.05;
-  }
-
-  Widget _buildCaret() {
-    final clip = _clip!;
-    return Positioned.fromRect(
-      rect: clip,
-      child: IgnorePointer(
-        child: ClipRect(
-          child: AnimatedBuilder(
-            animation: Listenable.merge([_x, _y, _blink]),
-            builder: (context, _) {
-              final vx = _x.velocity;
-              final vy = _y.velocity;
-              final moving = _x.isAnimating || _y.isAnimating;
-              final speed = math.sqrt(vx * vx + vy * vy);
-              final extra = moving ? math.min(widget.maxStretch, vx.abs() * widget.stretch) : 0.0;
-              final squash = moving ? math.min(widget.maxSquash, speed * widget.squash) : 0.0;
-              final width = widget.caretWidth + extra;
-              final height = _height * (1 - squash);
-              // Grow the caret behind its direction of travel, like a trail.
-              final left = _x.value - clip.left - (vx > 0 ? extra : 0);
-              final top = _y.value - clip.top + (_height - height) / 2;
-              final color = widget.caretColor;
-              return Stack(
-                children: [
-                  Positioned(
-                    left: left,
-                    top: top,
-                    width: width,
-                    height: height,
-                    child: Opacity(
-                      opacity: _blinkOpacity().clamp(0.0, 1.0),
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: color,
-                          borderRadius: BorderRadius.circular(widget.caretRadius),
-                          boxShadow: [
-                            if (widget.glowRadius > 0 && widget.glowOpacity > 0)
-                              BoxShadow(
-                                color: color.withValues(alpha: color.a * widget.glowOpacity),
-                                blurRadius: widget.glowRadius,
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     // Re-measure after any rebuild (resizes, style or parameter changes).
@@ -426,8 +362,105 @@ class _SmoothCaretFieldState extends State<SmoothCaretField>
                 ),
               ),
             editable,
-            if (_visible && _clip != null) _buildCaret(),
+            if (_visible && _clip != null)
+              Positioned.fromRect(
+                rect: _clip!,
+                child: _Caret(
+                  field: widget,
+                  x: _x,
+                  y: _y,
+                  blink: _blink,
+                  origin: _clip!.topLeft,
+                  lineHeight: _height,
+                ),
+              ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// The animated caret, painted inside the field's (inflated) clip rect.
+class _Caret extends StatelessWidget {
+  const _Caret({
+    required this.field,
+    required this.x,
+    required this.y,
+    required this.blink,
+    required this.origin,
+    required this.lineHeight,
+  });
+
+  /// The field whose caret this is; supplies the visual parameters.
+  final SmoothCaretField field;
+
+  /// Caret position (top left), in the field's stack coordinates.
+  final AnimationController x;
+  final AnimationController y;
+
+  /// Drives one blink cycle from 0 to 1 while idle.
+  final AnimationController blink;
+
+  /// Top left of the clip rect, to convert positions into local ones.
+  final Offset origin;
+
+  /// Height of the line the caret sits on.
+  final double lineHeight;
+
+  /// Opacity over one blink cycle: hold, fade out, hold, fade in.
+  double get _opacity {
+    if (!blink.isAnimating) return 1;
+    final t = blink.value;
+    if (t < 0.45) return 1;
+    if (t < 0.55) return 1 - (t - 0.45) / 0.1;
+    if (t < 0.95) return 0;
+    return (t - 0.95) / 0.05;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: ClipRect(
+        child: AnimatedBuilder(
+          animation: Listenable.merge([x, y, blink]),
+          builder: (context, _) {
+            final vx = x.velocity;
+            final vy = y.velocity;
+            final moving = x.isAnimating || y.isAnimating;
+            final speed = math.sqrt(vx * vx + vy * vy);
+            final extra = moving ? math.min(field.maxStretch, vx.abs() * field.stretch) : 0.0;
+            final squash = moving ? math.min(field.maxSquash, speed * field.squash) : 0.0;
+            final height = lineHeight * (1 - squash);
+            final color = field.caretColor;
+            return Stack(
+              children: [
+                Positioned(
+                  // Grow the caret behind its direction of travel, like a trail.
+                  left: x.value - origin.dx - (vx > 0 ? extra : 0),
+                  top: y.value - origin.dy + (lineHeight - height) / 2,
+                  width: field.caretWidth + extra,
+                  height: height,
+                  child: Opacity(
+                    opacity: _opacity.clamp(0.0, 1.0),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.circular(field.caretRadius),
+                        boxShadow: [
+                          if (field.glowRadius > 0 && field.glowOpacity > 0)
+                            BoxShadow(
+                              color: color.withValues(alpha: color.a * field.glowOpacity),
+                              blurRadius: field.glowRadius,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

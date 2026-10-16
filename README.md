@@ -9,6 +9,10 @@ live playground where you can tune every setting.
 design-system agnostic and drop-in for any app. A test
 (`test/widgets_only_test.dart`) enforces it.
 
+UI is also always split into widget classes, never into functions or methods
+that return widgets (`test/code_style_test.dart`). See [CLAUDE.md](CLAUDE.md)
+for the full contributor rules.
+
 ## Components
 
 | #   | Component        | Description |

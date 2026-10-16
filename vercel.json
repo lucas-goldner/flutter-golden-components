@@ -4,7 +4,6 @@
   "installCommand": "true",
   "buildCommand": "bash scripts/vercel-build.sh",
   "outputDirectory": "example/build/web",
-  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/(.*)",

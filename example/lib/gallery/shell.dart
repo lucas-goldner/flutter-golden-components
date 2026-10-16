@@ -513,47 +513,59 @@ class _ViewTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = GalleryTheme.paletteOf(context);
-    Widget tab(String label, bool code) {
-      final selected = showCode == code;
-      return Semantics(
-        button: true,
-        selected: selected,
-        child: Pressable(
-          onTap: () => onChanged(code),
-          builder: (context, hover, pressed) => AnimatedContainer(
-            duration: const Duration(milliseconds: 160),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: selected ? p.surface : (hover ? p.surface.withValues(alpha: 0.4) : null),
-              borderRadius: BorderRadius.circular(7),
-              boxShadow: [
-                if (selected)
-                  BoxShadow(
-                    color: const Color(0xFF000000).withValues(alpha: 0.12),
-                    blurRadius: 4,
-                    offset: const Offset(0, 1),
-                  ),
-              ],
-            ),
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
-                color: selected ? p.text : p.muted,
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
     return Container(
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(color: p.surfaceAlt, borderRadius: BorderRadius.circular(9)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [tab('Preview', false), tab('Code', true)],
+        children: [
+          _ViewTab(label: 'Preview', selected: !showCode, onTap: () => onChanged(false)),
+          _ViewTab(label: 'Code', selected: showCode, onTap: () => onChanged(true)),
+        ],
+      ),
+    );
+  }
+}
+
+class _ViewTab extends StatelessWidget {
+  const _ViewTab({required this.label, required this.selected, required this.onTap});
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = GalleryTheme.paletteOf(context);
+    return Semantics(
+      button: true,
+      selected: selected,
+      child: Pressable(
+        onTap: onTap,
+        builder: (context, hover, pressed) => AnimatedContainer(
+          duration: const Duration(milliseconds: 160),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            color: selected ? p.surface : (hover ? p.surface.withValues(alpha: 0.4) : null),
+            borderRadius: BorderRadius.circular(7),
+            boxShadow: [
+              if (selected)
+                BoxShadow(
+                  color: const Color(0xFF000000).withValues(alpha: 0.12),
+                  blurRadius: 4,
+                  offset: const Offset(0, 1),
+                ),
+            ],
+          ),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+              color: selected ? p.text : p.muted,
+            ),
+          ),
+        ),
       ),
     );
   }

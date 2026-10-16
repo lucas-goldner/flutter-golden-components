@@ -2,19 +2,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_golden_components/flutter_golden_components.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Widget _host(Widget child) => Directionality(
-  textDirection: TextDirection.ltr,
-  child: MediaQuery(
-    data: const MediaQueryData(),
-    child: Padding(
-      padding: const EdgeInsets.all(20),
-      child: Align(
-        alignment: Alignment.topLeft,
-        child: SizedBox(width: 300, child: child),
+/// Minimal widgets-only host for a field under test.
+class _Host extends StatelessWidget {
+  const _Host({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: MediaQuery(
+        data: const MediaQueryData(),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: SizedBox(width: 300, child: child),
+          ),
+        ),
       ),
-    ),
-  ),
-);
+    );
+  }
+}
 
 Finder _caret() =>
     find.descendant(of: find.byType(SmoothCaretField), matching: find.byType(DecoratedBox));
@@ -23,7 +33,7 @@ void main() {
   testWidgets('caret only shows while focused', (tester) async {
     final focus = FocusNode();
     addTearDown(focus.dispose);
-    await tester.pumpWidget(_host(SmoothCaretField(focusNode: focus)));
+    await tester.pumpWidget(_Host(child: SmoothCaretField(focusNode: focus)));
     await tester.pump();
     expect(_caret(), findsNothing);
 
@@ -45,7 +55,9 @@ void main() {
     addTearDown(controller.dispose);
     addTearDown(focus.dispose);
     await tester.pumpWidget(
-      _host(SmoothCaretField(controller: controller, focusNode: focus, blink: false)),
+      _Host(
+        child: SmoothCaretField(controller: controller, focusNode: focus, blink: false),
+      ),
     );
     focus.requestFocus();
     controller.selection = const TextSelection.collapsed(offset: 0);
@@ -70,7 +82,9 @@ void main() {
   testWidgets('typing updates text and hides the placeholder', (tester) async {
     String? changed;
     await tester.pumpWidget(
-      _host(SmoothCaretField(placeholder: 'Type here', onChanged: (v) => changed = v)),
+      _Host(
+        child: SmoothCaretField(placeholder: 'Type here', onChanged: (v) => changed = v),
+      ),
     );
     expect(find.text('Type here'), findsOneWidget);
     await tester.tap(find.byType(EditableText));
@@ -88,7 +102,9 @@ void main() {
     addTearDown(controller.dispose);
     addTearDown(focus.dispose);
     await tester.pumpWidget(
-      _host(SmoothCaretField(controller: controller, focusNode: focus, blink: false)),
+      _Host(
+        child: SmoothCaretField(controller: controller, focusNode: focus, blink: false),
+      ),
     );
     focus.requestFocus();
     await tester.pump();
