@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../demos/endless_glide_grid_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 
 /// One component listed in the gallery.
@@ -51,6 +52,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['input', 'text', 'spring'],
     sourcePath: 'lib/src/smooth_caret/smooth_caret_field.dart',
     builder: (context) => const SmoothCaretDemo(),
+  ),
+  GalleryComponent(
+    number: 2,
+    slug: 'endless-glide-grid',
+    name: 'Endless Glide Grid',
+    description:
+        'An endless, staggered grid you can drag, fling and wheel-scroll in any direction. '
+        'It glides on with friction after release, and tiles tilt and shrink with speed.',
+    tags: const ['gesture', 'scroll', 'physics'],
+    sourcePath: 'lib/src/endless_glide_grid/endless_glide_grid.dart',
+    builder: (context) => const EndlessGlideGridDemo(),
   ),
 ];
 

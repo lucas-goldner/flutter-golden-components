@@ -20,4 +20,5 @@ dev_dependencies:
 flutter:
   # Component sources ship as assets so the gallery can show and copy them.
   assets:
+    - lib/src/endless_glide_grid/
     - lib/src/smooth_caret/

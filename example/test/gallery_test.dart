@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_golden_components/flutter_golden_components.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:golden_gallery/gallery/playground.dart';
 import 'package:golden_gallery/gallery/registry.dart';
 import 'package:golden_gallery/main.dart';
 
 void main() {
+  _everyComponentOpens();
   for (final size in const [Size(1400, 900), Size(390, 844)]) {
     testWidgets('home lists components and opens them at ${size.width}px', (tester) async {
       tester.view.physicalSize = size;
@@ -35,5 +37,34 @@ void main() {
       await tester.pump(const Duration(seconds: 1));
       await tester.pumpWidget(const SizedBox());
     });
+  }
+}
+
+void _everyComponentOpens() {
+  for (final size in const [Size(1400, 900), Size(390, 844)]) {
+    for (final component in galleryComponents) {
+      testWidgets('${component.slug} opens, plays and resets at ${size.width}px', (tester) async {
+        tester.view.physicalSize = size;
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.reset);
+        await tester.pumpWidget(const GalleryApp());
+        await tester.pumpAndSettle();
+        final card = find.text(component.name).last;
+        await tester.ensureVisible(card);
+        await tester.tap(card);
+        await tester.pumpAndSettle();
+        expect(find.text('Settings'), findsOneWidget);
+        // Fling across the preview, then reset.
+        await tester.flingFrom(
+          tester.getCenter(find.byType(Playground)) - Offset(0, size.height * 0.15),
+          const Offset(-150, -60),
+          1500,
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Reset'));
+        await tester.pumpAndSettle();
+        await tester.pumpWidget(const SizedBox());
+      });
+    }
   }
 }
