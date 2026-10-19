@@ -30,7 +30,8 @@ const List<GalleryLink> galleryLinks = [
   GalleryLink(kind: LinkKind.website, label: 'lucas-goldner.com', url: 'https://lucas-goldner.com'),
 ];
 
-Future<void> _open(String url) =>
+/// Opens [url] outside the app (a new tab on the web).
+Future<void> openExternal(String url) =>
     launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication, webOnlyWindowName: '_blank');
 
 /// "About" card for the home page: what the project is, who made it, links.
@@ -117,7 +118,7 @@ class _LinkButton extends StatelessWidget {
       label: link.label,
       excludeSemantics: true,
       child: Pressable(
-        onTap: () => _open(link.url),
+        onTap: () => openExternal(link.url),
         builder: (context, hover, pressed) => AnimatedContainer(
           duration: const Duration(milliseconds: 140),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -158,7 +159,7 @@ class _IconLink extends StatelessWidget {
       label: link.label,
       excludeSemantics: true,
       child: Pressable(
-        onTap: () => _open(link.url),
+        onTap: () => openExternal(link.url),
         builder: (context, hover, pressed) => AnimatedContainer(
           duration: const Duration(milliseconds: 140),
           width: 30,
@@ -255,4 +256,32 @@ class _LinkIconPainter extends CustomPainter {
   @override
   bool shouldRepaint(_LinkIconPainter oldDelegate) =>
       oldDelegate.kind != kind || oldDelegate.color != color;
+}
+
+/// A small underlined text link, used for credits.
+class CreditLink extends StatelessWidget {
+  const CreditLink({super.key, required this.label, required this.url});
+
+  final String label;
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = GalleryTheme.paletteOf(context);
+    return Semantics(
+      link: true,
+      child: Pressable(
+        onTap: () => openExternal(url),
+        builder: (context, hover, pressed) => Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            color: hover ? p.text : p.muted,
+            decoration: TextDecoration.underline,
+            decorationColor: p.muted.withValues(alpha: 0.5),
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -3,4 +3,5 @@
 library;
 
 export 'src/endless_glide_grid/endless_glide_grid.dart';
+export 'src/marquee/marquee.dart';
 export 'src/smooth_caret/smooth_caret_field.dart';

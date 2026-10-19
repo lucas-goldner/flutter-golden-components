@@ -509,6 +509,10 @@ class _ComponentPageState extends State<ComponentPage> {
                         ),
                         const SizedBox(height: 6),
                         Text(component.description, style: GalleryText.body(p)),
+                        if (component.credit case final credit?) ...[
+                          const SizedBox(height: 4),
+                          CreditLink(label: credit.label, url: credit.url),
+                        ],
                       ],
                     ),
                   ),

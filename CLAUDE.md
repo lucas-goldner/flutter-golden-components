@@ -76,3 +76,11 @@ flutter test
 
 Goldens are generated on Linux. Only update them for intentional visual
 changes, and say so in the commit message.
+
+## Ports from other libraries
+
+When a component is based on another project, keep its license next to the
+code (`lib/src/<name>/LICENSE_*.md`), add a header comment with the source
+link, set `credit:` on its gallery entry, and list it under Credits in the
+README. Endlessly animating components must hold still when
+`MediaQuery.disableAnimations` is set (gallery goldens rely on it).

@@ -52,7 +52,9 @@ void _everyComponentOpens() {
         final card = find.text(component.name).last;
         await tester.ensureVisible(card);
         await tester.tap(card);
-        await tester.pumpAndSettle();
+        // Some playgrounds animate forever (marquee), so pump fixed time
+        // instead of waiting to settle.
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.text('Settings'), findsOneWidget);
         // Fling across the preview, then reset.
         await tester.flingFrom(
@@ -60,10 +62,11 @@ void _everyComponentOpens() {
           const Offset(-150, -60),
           1500,
         );
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(seconds: 3));
         await tester.tap(find.text('Reset'));
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(seconds: 1));
         await tester.pumpWidget(const SizedBox());
+        await tester.pump(const Duration(seconds: 1));
       });
     }
   }
