@@ -46,28 +46,56 @@
   }
   .chip b { color: #F5C451; font-weight: 600; }
 
-  .right { position: absolute; right: 64px; top: 96px; width: 440px; }
-  .card {
-    border-radius: 20px; padding: 18px 22px 22px;
-    background: #121216; border: 1.5px solid rgba(245,196,81,0.75);
-    box-shadow: 0 0 0 6px rgba(245,196,81,0.06), 0 24px 60px rgba(0,0,0,0.55), 0 0 60px rgba(245,196,81,0.14);
+  .wall {
+    position: absolute; right: -30px; top: 70px; width: 560px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    transform: perspective(1400px) rotateY(-16deg) rotateX(8deg) rotateZ(-3deg);
   }
-  .label { font-size: 14px; font-weight: 600; letter-spacing: 0.5px; color: #F5C451; }
-  .field { position: relative; margin-top: 10px; font-size: 30px; font-weight: 500; letter-spacing: -0.4px; height: 42px; line-height: 42px; white-space: nowrap; }
-  .caret {
-    position: absolute; top: 4px; width: 3px; height: 34px; border-radius: 2px; background: #F5C451;
-    box-shadow: 0 0 10px rgba(245,196,81,0.8);
+  .tile {
+    height: 150px; border-radius: 22px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px; padding: 22px;
+    background: linear-gradient(160deg, #18181d 0%, #111114 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 24px 50px rgba(0,0,0,0.5);
   }
-  .trail { position: absolute; top: 7px; height: 28px; border-radius: 3px;
-    background: linear-gradient(90deg, rgba(245,196,81,0) 0%, rgba(245,196,81,0.5) 100%); }
-  .code {
-    margin-top: 22px; border-radius: 16px; padding: 18px 22px;
-    background: #0D1117; border: 1px solid rgba(255,255,255,0.08);
-    font-family: 'GalleryMono', monospace; font-size: 16.5px; line-height: 1.65; color: #E6EDF3;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  .tile.hero {
+    border-color: rgba(245,196,81,0.6);
+    box-shadow: 0 0 0 6px rgba(245,196,81,0.06), 0 0 70px rgba(245,196,81,0.28), 0 24px 50px rgba(0,0,0,0.55);
   }
-  .k { color: #FF7B72; } .t { color: #FFA657; } .n { color: #79C0FF; } .c { color: #8B949E; font-style: italic; }
-  .url { position: absolute; right: 64px; bottom: 70px; font-size: 18px; color: #71717A; font-weight: 500; }
+  .tile.hero img { width: 92px; height: 92px; }
+  .slider { position: relative; width: 100%; height: 6px; border-radius: 3px; background: #2a2a31; }
+  .slider i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: #F5C451; }
+  .slider b { position: absolute; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%;
+    background: #121216; border: 3px solid #F5C451; box-shadow: 0 0 14px rgba(245,196,81,0.5); }
+  .slider.dim i { background: #60A5FA; } .slider.dim b { border-color: #60A5FA; box-shadow: none; }
+  .toggle { width: 74px; height: 38px; border-radius: 19px; background: #2a2a31; position: relative; }
+  .toggle b { position: absolute; top: 5px; left: 5px; width: 28px; height: 28px; border-radius: 50%; background: #71717A; }
+  .toggle.on { background: #F5C451; box-shadow: 0 0 22px rgba(245,196,81,0.35); }
+  .toggle.on b { left: 41px; background: #1A1405; }
+  .ring { width: 96px; height: 96px; }
+  .ring circle { fill: none; stroke-width: 9; }
+  .ring .track { stroke: #2a2a31; }
+  .ring .arc { stroke: #F5C451; stroke-linecap: round; stroke-dasharray: 188.5; stroke-dashoffset: 55;
+    transform: rotate(-90deg); transform-origin: 40px 40px; filter: drop-shadow(0 0 6px rgba(245,196,81,0.5)); }
+  .bars { display: flex; align-items: flex-end; gap: 9px; height: 90px; }
+  .bars i { width: 16px; border-radius: 5px; background: linear-gradient(#FDE68A, #C98A12); }
+  .bars i:nth-child(2n) { background: linear-gradient(#93C5FD, #1D4ED8); }
+  .pills { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .pills i { height: 22px; border-radius: 11px; background: rgba(245,196,81,0.85); width: 80%; }
+  .pills i.g { background: rgba(52,211,153,0.8); width: 60%; }
+  .pills i.b { background: rgba(96,165,250,0.8); width: 92%; }
+  .avatars { display: flex; }
+  .avatars i { width: 46px; height: 46px; border-radius: 50%; margin-left: -12px; border: 3px solid #141418;
+    background: linear-gradient(135deg, #FDE68A, #B7800A); }
+  .avatars i:first-child { margin-left: 0; }
+  .avatars i.p { background: linear-gradient(135deg, #F9A8D4, #BE185D); }
+  .avatars i.b { background: linear-gradient(135deg, #93C5FD, #1D4ED8); }
+  .avatars i.g { background: linear-gradient(135deg, #6EE7B7, #047857); }
+  .wave { width: 120px; height: 60px; }
+  .wave path { fill: none; stroke: #F5C451; stroke-width: 5; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(245,196,81,0.6)); }
+  .cursor { font-size: 54px; font-weight: 700; letter-spacing: -2px; color: #F4F4F5; display: flex; align-items: center; }
+  .cursor b { width: 4px; height: 52px; margin-left: 6px; border-radius: 2px; background: #F5C451; box-shadow: 0 0 12px rgba(245,196,81,0.8); }
+  .url { z-index: 2; position: absolute; left: 74px; bottom: 136px; font-size: 18px; color: #71717A; font-weight: 500; }
 </style>
 </head>
 <body>
@@ -81,26 +109,20 @@
     <div class="chip"><b>widgets</b> only</div>
     <div class="chip">No Material</div>
     <div class="chip">No Cupertino</div>
+    <div class="chip">Web · iOS · macOS</div>
   </div>
 
-  <div class="right">
-    <div class="card">
-      <div class="label">SMOOTH CARET</div>
-      <div class="field">Hello, smooth<span id="end"></span> caret
-        <div class="trail" id="trail"></div><div class="caret" id="caret"></div>
-      </div>
-    </div>
-    <div class="code"><span class="c">// spring-animated caret</span><br><span class="t">SmoothCaretField</span>(<br>&nbsp;&nbsp;caretColor: <span class="t">Color</span>(<span class="n">0xFFF5C451</span>),<br>&nbsp;&nbsp;spring: <span class="k">const</span> <span class="t">SpringDescription</span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;stiffness: <span class="n">520</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;damping: <span class="n">34</span>,<br>&nbsp;&nbsp;),<br>)</div>
+  <div class="wall">
+    <div class="tile"><div class="slider"><i style="width:62%"></i><b style="left:62%"></b></div><div class="slider dim"><i style="width:35%"></i><b style="left:35%"></b></div></div>
+    <div class="tile"><div class="toggle on"><b></b></div><div class="toggle"><b></b></div></div>
+    <div class="tile"><svg viewBox="0 0 80 80" class="ring"><circle cx="40" cy="40" r="30" class="track"/><circle cx="40" cy="40" r="30" class="arc"/></svg></div>
+    <div class="tile"><div class="bars"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:65%"></i></div></div>
+    <div class="tile hero"><img src="../../example/web/favicon.svg" alt=""></div>
+    <div class="tile"><div class="pills"><i></i><i class="g"></i><i class="b"></i></div></div>
+    <div class="tile"><div class="avatars"><i></i><i class="p"></i><i class="b"></i><i class="g"></i></div></div>
+    <div class="tile"><svg viewBox="0 0 120 60" class="wave"><path d="M2 40 C 22 10, 38 10, 58 32 S 96 58, 118 18"/></svg></div>
+    <div class="tile"><div class="cursor"><span>Aa</span><b></b></div></div>
   </div>
   <div class="url">flutter-golden-components.vercel.app</div>
-  <script>
-    // Park the caret mid-glide after "smooth", with a motion trail behind it.
-    const end = document.getElementById('end').offsetLeft;
-    const caret = document.getElementById('caret');
-    const trail = document.getElementById('trail');
-    caret.style.left = (end + 2) + 'px';
-    trail.style.left = (end - 70) + 'px';
-    trail.style.width = '72px';
-  </script>
 </body>
 </html>
