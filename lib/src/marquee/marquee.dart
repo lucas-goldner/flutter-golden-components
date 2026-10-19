@@ -1,5 +1,3 @@
-// Based on Magic UI's Marquee (https://magicui.design/docs/components/marquee),
-// MIT License, Copyright (c) Magic UI. See LICENSE_MAGIC_UI.md in this folder.
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';

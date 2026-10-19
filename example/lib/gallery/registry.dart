@@ -4,16 +4,6 @@ import '../demos/endless_glide_grid_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 
-/// Attribution for a component based on another project.
-@immutable
-class GalleryCredit {
-  const GalleryCredit({required this.label, required this.url});
-
-  /// Shown on the component page, e.g. "Based on Magic UI's Marquee (MIT)".
-  final String label;
-  final String url;
-}
-
 /// One component listed in the gallery.
 @immutable
 class GalleryComponent {
@@ -25,7 +15,6 @@ class GalleryComponent {
     required this.tags,
     required this.sourcePath,
     required this.builder,
-    this.credit,
   });
 
   /// Running number, shown as a badge (001, 002, ...).
@@ -44,9 +33,6 @@ class GalleryComponent {
 
   /// Builds the playground (preview + settings) for this component.
   final WidgetBuilder builder;
-
-  /// Attribution when the component is based on someone else's work.
-  final GalleryCredit? credit;
 
   String get route => '/$slug';
 
@@ -88,10 +74,6 @@ final List<GalleryComponent> galleryComponents = [
         'constant speed, fills any width, fades at the edges and eases to a stop on hover.',
     tags: const ['animation', 'carousel', 'loop'],
     sourcePath: 'lib/src/marquee/marquee.dart',
-    credit: GalleryCredit(
-      label: "Based on Magic UI's Marquee (MIT)",
-      url: 'https://magicui.design/docs/components/marquee',
-    ),
     builder: (context) => const MarqueeDemo(),
   ),
 ];

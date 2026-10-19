@@ -257,31 +257,3 @@ class _LinkIconPainter extends CustomPainter {
   bool shouldRepaint(_LinkIconPainter oldDelegate) =>
       oldDelegate.kind != kind || oldDelegate.color != color;
 }
-
-/// A small underlined text link, used for credits.
-class CreditLink extends StatelessWidget {
-  const CreditLink({super.key, required this.label, required this.url});
-
-  final String label;
-  final String url;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = GalleryTheme.paletteOf(context);
-    return Semantics(
-      link: true,
-      child: Pressable(
-        onTap: () => openExternal(url),
-        builder: (context, hover, pressed) => Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: hover ? p.text : p.muted,
-            decoration: TextDecoration.underline,
-            decorationColor: p.muted.withValues(alpha: 0.5),
-          ),
-        ),
-      ),
-    );
-  }
-}

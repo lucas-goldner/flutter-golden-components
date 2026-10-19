@@ -1,7 +1,6 @@
 ## Unreleased
 
-- `Marquee`: an endless scrolling strip (based on Magic UI's Marquee, MIT)
-  with px/s speed, automatic copies to fill any width, edge fade, eased
+- `Marquee`: an endless scrolling strip with px/s speed, automatic copies to fill any width, edge fade, eased
   pause on hover, vertical mode and reduced-motion support.
 - `EndlessGlideGrid`: an endless 2D grid of repeating tiles with drag, fling,
   wheel and trackpad panning, friction-based momentum, staggered columns and

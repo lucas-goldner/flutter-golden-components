@@ -19,7 +19,7 @@ for the full contributor rules.
 | --- | ---------------- | ----------- |
 | 001 | `SmoothCaretField` | A text input whose caret glides to each new cursor position on a spring, leaving a soft motion trail as it travels and blinking with a soft fade at rest. |
 | 002 | `EndlessGlideGrid` | An endless, staggered grid you can drag, fling and wheel-scroll in any direction. It glides on with friction after release, and tiles tilt and shrink with speed. |
-| 003 | `Marquee` | An endless scrolling strip of any widgets, horizontal or vertical, at a constant speed, with edge fade and an eased pause on hover. Based on [Magic UI](https://magicui.design/docs/components/marquee) (MIT). |
+| 003 | `Marquee` | An endless scrolling strip of any widgets, horizontal or vertical, at a constant speed, with edge fade and an eased pause on hover. |
 
 ## Usage
 
@@ -118,14 +118,6 @@ NODE_PATH=$(npm root -g) node scripts/og/render.js   # needs playwright
    `example/lib/gallery/controls.dart`, and register it (with its
    `sourcePath`) in `example/lib/gallery/registry.dart`. Then regenerate the
    gallery goldens from `example/`.
-
-## Credits
-
-Some components are based on open source designs; their licenses are kept
-next to the code:
-
-- `Marquee`: [Magic UI](https://magicui.design/docs/components/marquee), MIT
-  (`lib/src/marquee/LICENSE_MAGIC_UI.md`).
 
 ## License
 

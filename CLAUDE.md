@@ -79,8 +79,10 @@ changes, and say so in the commit message.
 
 ## Ports from other libraries
 
-When a component is based on another project, keep its license next to the
-code (`lib/src/<name>/LICENSE_*.md`), add a header comment with the source
-link, set `credit:` on its gallery entry, and list it under Credits in the
-README. Endlessly animating components must hold still when
+Never mention where a component is based from: no "based on"/credit text
+in code comments, the gallery, the README or the changelog. If the origin
+is licensed (e.g. MIT), keep its license file quietly next to the code
+(`lib/src/<name>/LICENSE_*.md`) and nothing else.
+
+Endlessly animating components must hold still when
 `MediaQuery.disableAnimations` is set (gallery goldens rely on it).
