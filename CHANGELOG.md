@@ -1,5 +1,8 @@
 ## Unreleased
 
+- `BlurFade`: blur + fade + slide reveal on mount or when scrolled into
+  view, with delay/stagger, direction, start scale, replay on re-entry and
+  reduced-motion support.
 - `Marquee`: an endless scrolling strip with px/s speed, automatic copies to fill any width, edge fade, eased
   pause on hover, vertical mode and reduced-motion support.
 - `EndlessGlideGrid`: an endless 2D grid of repeating tiles with drag, fling,

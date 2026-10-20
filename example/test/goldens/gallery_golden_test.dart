@@ -31,7 +31,11 @@ Future<void> _pumpGallery(
 }
 
 Future<void> _open(WidgetTester tester, GalleryComponent component) async {
-  await tester.tap(find.text(component.name).last);
+  final card = find.text(component.name).last;
+  // Cards further down the home page are below the fold on phones.
+  await tester.ensureVisible(card);
+  await tester.pumpAndSettle();
+  await tester.tap(card);
   await tester.pumpAndSettle();
 }
 

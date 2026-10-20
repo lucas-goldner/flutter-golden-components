@@ -51,6 +51,7 @@ void _everyComponentOpens() {
         await tester.pumpAndSettle();
         final card = find.text(component.name).last;
         await tester.ensureVisible(card);
+        await tester.pumpAndSettle();
         await tester.tap(card);
         // Some playgrounds animate forever (marquee), so pump fixed time
         // instead of waiting to settle.

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../demos/blur_fade_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
@@ -75,6 +76,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['animation', 'carousel', 'loop'],
     sourcePath: 'lib/src/marquee/marquee.dart',
     builder: (context) => const MarqueeDemo(),
+  ),
+  GalleryComponent(
+    number: 4,
+    slug: 'blur-fade',
+    name: 'Blur Fade',
+    description:
+        'Reveals any widget by fading it in from a soft blur while it slides into place, '
+        'on mount or as it scrolls into view. Stagger a group for a cascading entrance.',
+    tags: const ['animation', 'scroll', 'reveal'],
+    sourcePath: 'lib/src/blur_fade/blur_fade.dart',
+    builder: (context) => const BlurFadeDemo(),
   ),
 ];
 

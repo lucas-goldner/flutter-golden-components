@@ -20,6 +20,7 @@ for the full contributor rules.
 | 001 | `SmoothCaretField` | A text input whose caret glides to each new cursor position on a spring, leaving a soft motion trail as it travels and blinking with a soft fade at rest. |
 | 002 | `EndlessGlideGrid` | An endless, staggered grid you can drag, fling and wheel-scroll in any direction. It glides on with friction after release, and tiles tilt and shrink with speed. |
 | 003 | `Marquee` | An endless scrolling strip of any widgets, horizontal or vertical, at a constant speed, with edge fade and an eased pause on hover. |
+| 004 | `BlurFade` | Reveals any widget by fading it in from a soft blur while it slides into place, on mount or as it scrolls into view. Stagger a group for a cascading entrance. |
 
 ## Usage
 
