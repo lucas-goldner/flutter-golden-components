@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../demos/blur_fade_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
+import '../demos/live_feed_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 
@@ -87,6 +88,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['animation', 'scroll', 'reveal'],
     sourcePath: 'lib/src/blur_fade/blur_fade.dart',
     builder: (context) => const BlurFadeDemo(),
+  ),
+  GalleryComponent(
+    number: 5,
+    slug: 'live-feed',
+    name: 'Live Feed',
+    description:
+        'A feed that reveals items one at a time, newest on top. Each one springs in and '
+        'pushes the rest down, like incoming notifications. Loops, caps and pauses.',
+    tags: const ['list', 'animation', 'spring'],
+    sourcePath: 'lib/src/live_feed/live_feed.dart',
+    builder: (context) => const LiveFeedDemo(),
   ),
 ];
 

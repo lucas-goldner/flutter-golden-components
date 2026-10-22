@@ -21,6 +21,7 @@ for the full contributor rules.
 | 002 | `EndlessGlideGrid` | An endless, staggered grid you can drag, fling and wheel-scroll in any direction. It glides on with friction after release, and tiles tilt and shrink with speed. |
 | 003 | `Marquee` | An endless scrolling strip of any widgets, horizontal or vertical, at a constant speed, with edge fade and an eased pause on hover. |
 | 004 | `BlurFade` | Reveals any widget by fading it in from a soft blur while it slides into place, on mount or as it scrolls into view. Stagger a group for a cascading entrance. |
+| 005 | `LiveFeed` | A feed that reveals items one at a time, newest on top. Each one springs in and pushes the rest down, like incoming notifications. Loops, caps and pauses. |
 
 ## Usage
 

@@ -1,5 +1,8 @@
 ## Unreleased
 
+- `LiveFeed`: reveals children one per interval, newest on top, each
+  springing in; loop, maxVisible cap, pause, custom spring and
+  reduced-motion support.
 - `BlurFade`: blur + fade + slide reveal on mount or when scrolled into
   view, with delay/stagger, direction, start scale, replay on re-entry and
   reduced-motion support.

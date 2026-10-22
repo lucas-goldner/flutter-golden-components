@@ -22,5 +22,6 @@ flutter:
   assets:
     - lib/src/blur_fade/
     - lib/src/endless_glide_grid/
+    - lib/src/live_feed/
     - lib/src/marquee/
     - lib/src/smooth_caret/
