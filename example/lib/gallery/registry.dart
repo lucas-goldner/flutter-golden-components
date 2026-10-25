@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../demos/blur_fade_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
+import '../demos/globe_demo.dart';
 import '../demos/live_feed_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
@@ -99,6 +100,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['list', 'animation', 'spring'],
     sourcePath: 'lib/src/live_feed/live_feed.dart',
     builder: (context) => const LiveFeedDemo(),
+  ),
+  GalleryComponent(
+    number: 6,
+    slug: 'globe',
+    name: 'Globe',
+    description:
+        'An interactive dotted globe. Highlight countries or continents, draw flight routes '
+        'that animate from start to end with a plane, pin pulsing markers, and spin it.',
+    tags: const ['map', 'canvas', 'animation'],
+    sourcePath: 'lib/src/globe/globe.dart',
+    builder: (context) => const GlobeDemo(),
   ),
 ];
 

@@ -22,6 +22,7 @@ for the full contributor rules.
 | 003 | `Marquee` | An endless scrolling strip of any widgets, horizontal or vertical, at a constant speed, with edge fade and an eased pause on hover. |
 | 004 | `BlurFade` | Reveals any widget by fading it in from a soft blur while it slides into place, on mount or as it scrolls into view. Stagger a group for a cascading entrance. |
 | 005 | `LiveFeed` | A feed that reveals items one at a time, newest on top. Each one springs in and pushes the rest down, like incoming notifications. Loops, caps and pauses. |
+| 006 | `Globe` | An interactive dotted globe: highlight countries or continents, draw flight routes that animate from start to end with a plane, pin pulsing markers, spin it with momentum, tap countries. |
 
 ## Usage
 

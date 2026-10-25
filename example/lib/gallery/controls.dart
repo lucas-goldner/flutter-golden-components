@@ -354,6 +354,90 @@ class SegmentedControl<T> extends StatelessWidget {
   }
 }
 
+/// A wrap of toggleable chips. With [multiple] several can be on at once;
+/// otherwise tapping one selects just it.
+class ChipsControl<T> extends StatelessWidget {
+  const ChipsControl({
+    super.key,
+    required this.label,
+    required this.options,
+    required this.selected,
+    required this.onChanged,
+    this.multiple = true,
+  });
+
+  final String label;
+
+  /// Option values mapped to their display labels, in order.
+  final Map<T, String> options;
+  final Set<T> selected;
+  final ValueChanged<Set<T>> onChanged;
+  final bool multiple;
+
+  void _toggle(T value) {
+    if (!multiple) return onChanged({value});
+    final next = {...selected};
+    if (!next.remove(value)) next.add(value);
+    onChanged(next);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _LabelRow(label: label),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          children: [
+            for (final MapEntry(key: value, value: text) in options.entries)
+              _Chip(label: text, selected: selected.contains(value), onTap: () => _toggle(value)),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _Chip extends StatelessWidget {
+  const _Chip({required this.label, required this.selected, required this.onTap});
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = GalleryTheme.paletteOf(context);
+    return Semantics(
+      button: true,
+      selected: selected,
+      child: Pressable(
+        onTap: onTap,
+        builder: (context, hover, pressed) => AnimatedContainer(
+          duration: const Duration(milliseconds: 140),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          decoration: BoxDecoration(
+            color: selected ? p.accent.withValues(alpha: 0.18) : (hover ? p.surfaceAlt : null),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: selected ? p.accent : p.border),
+          ),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+              color: selected ? p.text : p.muted,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 /// A row of color swatches.
 class ColorControl extends StatelessWidget {
   const ColorControl({
