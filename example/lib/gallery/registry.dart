@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../demos/blur_fade_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
 import '../demos/globe_demo.dart';
+import '../demos/goo_blobs_demo.dart';
 import '../demos/live_feed_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
@@ -111,6 +112,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['map', 'canvas', 'animation'],
     sourcePath: 'lib/src/globe/globe.dart',
     builder: (context) => const GlobeDemo(),
+  ),
+  GalleryComponent(
+    number: 7,
+    slug: 'goo-blobs',
+    name: 'Goo Blobs',
+    description:
+        'Glowing blobs of goo that drift like wax in a lava lamp: they heat up, rise, cool, '
+        'sink, and melt into each other on the way. One follows your pointer.',
+    tags: const ['animation', 'canvas', 'ambient'],
+    sourcePath: 'lib/src/goo_blobs/goo_blobs.dart',
+    builder: (context) => const GooBlobsDemo(),
   ),
 ];
 

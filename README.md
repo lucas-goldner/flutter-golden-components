@@ -23,6 +23,7 @@ for the full contributor rules.
 | 004 | `BlurFade` | Reveals any widget by fading it in from a soft blur while it slides into place, on mount or as it scrolls into view. Stagger a group for a cascading entrance. |
 | 005 | `LiveFeed` | A feed that reveals items one at a time, newest on top. Each one springs in and pushes the rest down, like incoming notifications. Loops, caps and pauses. |
 | 006 | `Globe` | An interactive dotted globe: highlight countries or continents, draw flight routes that animate from start to end with a plane, pin pulsing markers, spin it with momentum, tap countries. |
+| 007 | `GooBlobs` | Glowing blobs of goo that drift like wax in a lava lamp: they heat up, rise, cool, sink and melt into each other. One follows your pointer. |
 
 ## Usage
 
