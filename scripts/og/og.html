@@ -46,27 +46,44 @@
   }
   .chip b { color: #F5C451; font-weight: 600; }
 
-  .shot { position: absolute; display: block; }
-  .globe {
-    width: 620px; left: 610px; top: 6px;
-    mask-image: radial-gradient(circle closest-side, #000 88%, rgba(0,0,0,0.55) 92%, transparent 100%);
+  .wall {
+    position: absolute; left: 560px; top: -6px; z-index: 1;
+    display: grid; grid-template-columns: 200px 200px 200px; grid-auto-rows: 52px; gap: 14px;
+    transform: perspective(2000px) rotateY(-14deg) rotateX(8deg) rotateZ(-6deg);
+    transform-origin: 50% 50%;
   }
-  .globe-glow {
-    position: absolute; width: 680px; height: 680px; left: 580px; top: -24px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(245,196,81,0.18) 38%, rgba(245,196,81,0.06) 48%, transparent 62%);
+  .tile {
+    position: relative; overflow: hidden; border-radius: 18px; background: #0A0A0C;
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.55);
   }
-  .lamp { mask-image: radial-gradient(ellipse 48% 50% at 50% 50%, #000 55%, transparent 100%); }
-  .lamp.lava { height: 540px; left: 505px; bottom: -40px; z-index: 2; }
-  .lamp.neon { height: 380px; right: -44px; bottom: -24px; z-index: 1; opacity: 0.95; }
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tile.hero {
+    border-color: rgba(245,196,81,0.55);
+    box-shadow: 0 0 0 6px rgba(245,196,81,0.05), 0 0 80px rgba(245,196,81,0.25), 0 30px 60px rgba(0,0,0,0.6);
+  }
+  .fade {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background:
+      linear-gradient(90deg, #0A0A0C 0%, #0A0A0C 40%, rgba(10,10,12,0.6) 46%, rgba(10,10,12,0) 54%),
+      linear-gradient(0deg, rgba(10,10,12,0.6) 0%, rgba(10,10,12,0) 22%);
+  }
   .url { z-index: 3; position: absolute; left: 74px; bottom: 160px; font-size: 18px; color: #71717A; font-weight: 500; }
 </style>
 </head>
 <body>
-  <div class="dots"></div><div class="glow2"></div>
-  <div class="globe-glow"></div>
-  <img class="shot globe" src="shots/globe.jpg" alt="">
-  <img class="shot lamp neon" src="shots/lamp-neon.jpg" alt="">
-  <img class="shot lamp lava" src="shots/lamp-lava.jpg" alt="">
+  <div class="dots"></div><div class="glow"></div><div class="glow2"></div>
+  <div class="wall">
+    <div class="tile" style="grid-column:1; grid-row:1 / span 3"><img src="shots/grid.jpg" alt=""></div>
+    <div class="tile hero" style="grid-column:2 / span 2; grid-row:1 / span 5"><img src="shots/globe.jpg" alt="" style="object-fit:contain"></div>
+    <div class="tile" style="grid-column:1; grid-row:4 / span 2"><img src="shots/caret.jpg" alt="" style="object-position:0 50%"></div>
+    <div class="tile" style="grid-column:1; grid-row:6 / span 2"><img src="shots/marquee.jpg" alt=""></div>
+    <div class="tile" style="grid-column:1; grid-row:8 / span 5"><img src="shots/lamp-lava.jpg" alt=""></div>
+    <div class="tile" style="grid-column:2; grid-row:6 / span 3"><img src="shots/blur.jpg" alt="" style="object-position:50% 0"></div>
+    <div class="tile" style="grid-column:2; grid-row:9 / span 4"><img src="shots/feed.jpg" alt="" style="object-position:50% 0"></div>
+    <div class="tile" style="grid-column:3; grid-row:6 / span 6"><img src="shots/lamp-neon.jpg" alt=""></div>
+  </div>
+  <div class="fade"></div>
   <div class="left">
     <div class="brand"><img class="logo" src="../../example/web/favicon.svg" alt="">Golden Components</div>
     <h1>Golden <span class="gold">Flutter</span><br>components</h1>
