@@ -3,6 +3,8 @@
 - `GooBlobs`: lava-lamp metaballs (blur + alpha threshold goo with a glow
   layer), heat-driven rise and fall, wax pool, pointer blob, palettes,
   gooeyness, glow and reduced-motion support.
+  `lightColor` publishes the light the goo gives off (blend of the hottest
+  blobs' colors) to light its surroundings.
 - `Globe`: dotted globe with country/continent highlights (242 countries,
   ISO codes, continents, centres), animated great-circle flight arcs with
   planes, pulsing markers, drag with momentum, auto-rotation, tap to get

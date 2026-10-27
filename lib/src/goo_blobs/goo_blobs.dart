@@ -33,6 +33,7 @@ class GooBlobs extends StatefulWidget {
     this.glow = 0.6,
     this.pool = true,
     this.followPointer = true,
+    this.lightColor,
     this.seed = 7,
   }) : assert(count >= 0),
        assert(minSize > 0 && maxSize >= minSize),
@@ -82,6 +83,14 @@ class GooBlobs extends StatefulWidget {
   /// Seed for the blobs' sizes, colors and starting positions.
   final int seed;
 
+  /// Receives the light the goo gives off, updated as it moves: the blobs'
+  /// colors blended by size and heat (hot wax glows more), with an alpha
+  /// that rises and falls with how hot the wax is overall.
+  ///
+  /// Use it to light the surroundings, e.g. a halo, reflections or a
+  /// backdrop that follows the lamp.
+  final ValueNotifier<Color>? lightColor;
+
   @override
   State<GooBlobs> createState() => _GooBlobsState();
 }
@@ -125,6 +134,12 @@ class _GooBlobsState extends State<GooBlobs> with SingleTickerProviderStateMixin
   Offset? _pointer;
 
   @override
+  void initState() {
+    super.initState();
+    _publishLightLater();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _reduceMotion = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
@@ -144,6 +159,54 @@ class _GooBlobsState extends State<GooBlobs> with SingleTickerProviderStateMixin
     if (!widget.followPointer) _pointer = _pointerTarget = null;
     _syncTicker();
     _frame.value++;
+    _publishLightLater();
+  }
+
+  /// Publishes [GooBlobs.lightColor] after this frame (listeners may
+  /// rebuild, which isn't allowed mid-build).
+  void _publishLightLater() {
+    if (widget.lightColor == null) return;
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _publishLight();
+    });
+  }
+
+  /// Blend of the blob colors by area and glow (hotter wax glows more).
+  void _publishLight() {
+    final notifier = widget.lightColor;
+    if (notifier == null) return;
+    var r = 0.0, g = 0.0, b = 0.0, total = 0.0, heat = 0.0, area = 0.0;
+    void add(Color c, double radius, double h) {
+      final a = radius * radius;
+      // Hot wax dominates, so the light follows whichever blobs are hottest.
+      final w = a * (0.03 + h * h * h * h);
+      r += c.r * w;
+      g += c.g * w;
+      b += c.b * w;
+      total += w;
+      heat += h * a;
+      area += a;
+    }
+
+    for (final blob in _blobs) {
+      add(blob.color, blob.radius, blob.heat);
+    }
+    if (_pointer != null) {
+      add(widget._palette[widget.count % widget._palette.length], widget.maxSize * 0.85, 1);
+    }
+    // The pool adds a little warmth without drowning out the blobs.
+    if (widget.pool) add(widget._palette.first, widget.maxSize * 0.8, 0.5);
+    if (total == 0) return;
+    final warmth = area == 0 ? 0.0 : heat / area;
+    // Averaging muddies colors; give the blend back some saturation.
+    final mix = HSLColor.fromColor(
+      Color.from(alpha: 1, red: r / total, green: g / total, blue: b / total),
+    );
+    notifier.value = mix
+        .withSaturation(math.max(mix.saturation, math.min(1, mix.saturation * 1.4)))
+        .withLightness(mix.lightness.clamp(0.35, 0.65))
+        .toColor()
+        .withValues(alpha: (0.45 + 0.55 * warmth).clamp(0.0, 1.0));
   }
 
   static bool _sameColors(List<Color> a, List<Color> b) {
@@ -200,6 +263,7 @@ class _GooBlobsState extends State<GooBlobs> with SingleTickerProviderStateMixin
       _pointer = Offset.lerp(from, target, 1 - math.exp(-dt * 10));
     }
     _frame.value++;
+    _publishLight();
     _syncTicker();
   }
 
@@ -242,12 +306,14 @@ class _GooBlobsState extends State<GooBlobs> with SingleTickerProviderStateMixin
     if (!_ticker.isActive) {
       _pointer = _pointerTarget;
       _frame.value++;
+      _publishLight();
     }
   }
 
   void _onPointerExit() {
     _pointer = _pointerTarget = null;
     _frame.value++;
+    _publishLight();
     _syncTicker();
   }
 
@@ -260,6 +326,7 @@ class _GooBlobsState extends State<GooBlobs> with SingleTickerProviderStateMixin
         // Blur scales with the blobs so the goo looks the same at any size.
         final sigma = math.max(0.0, shortest * 0.03 * widget.gooeyness);
         final painter = _GooPainter(state: this, repaint: _frame);
+        final glowPainter = _GooPainter(state: this, repaint: _frame, glowPass: true);
         return MouseRegion(
           onHover: (e) => _onPointer(e.localPosition, size),
           onExit: (_) => _onPointerExit(),
@@ -278,7 +345,7 @@ class _GooBlobsState extends State<GooBlobs> with SingleTickerProviderStateMixin
                     _Glow(
                       sigma: math.max(1, sigma * 2.4 + shortest * 0.02),
                       opacity: widget.glow,
-                      painter: painter,
+                      painter: glowPainter,
                     ),
                   _Goo(sigma: sigma, painter: painter),
                 ],
@@ -341,9 +408,12 @@ class _Glow extends StatelessWidget {
 }
 
 class _GooPainter extends CustomPainter {
-  _GooPainter({required this.state, required super.repaint});
+  _GooPainter({required this.state, required super.repaint, this.glowPass = false});
 
   final _GooBlobsState state;
+
+  /// Painting the halo: hot blobs shine, cold ones barely do.
+  final bool glowPass;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -373,7 +443,7 @@ class _GooPainter extends CustomPainter {
     }
 
     for (final b in state._blobs) {
-      _blob(canvas, Offset(b.x * size.width, b.y * size.height), b.radius * s, b.color);
+      _blob(canvas, Offset(b.x * size.width, b.y * size.height), b.radius * s, b.color, b.heat);
     }
     final pointer = state._pointer;
     if (pointer != null) {
@@ -382,13 +452,19 @@ class _GooPainter extends CustomPainter {
         Offset(pointer.dx * size.width, pointer.dy * size.height),
         w.maxSize * s * 0.85,
         w._palette[w.count % w._palette.length],
+        1,
       );
     }
   }
 
-  /// A blob with a brighter core, so merged goo keeps some depth.
-  static void _blob(Canvas canvas, Offset c, double r, Color color) {
-    final core = Color.lerp(color, const Color(0xFFFFFFFF), 0.35)!;
+  /// A blob with a brighter core (brighter still when hot), so merged goo
+  /// keeps some depth; in the glow pass, hot blobs shine and cold ones fade.
+  void _blob(Canvas canvas, Offset c, double r, Color color, double heat) {
+    if (glowPass) {
+      canvas.drawCircle(c, r, Paint()..color = color.withValues(alpha: 0.25 + 0.75 * heat));
+      return;
+    }
+    final core = Color.lerp(color, const Color(0xFFFFFFFF), 0.2 + 0.25 * heat)!;
     canvas.drawCircle(
       c,
       r,

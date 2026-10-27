@@ -105,4 +105,39 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(GooBlobs.defaultColors, isNotEmpty);
   });
+
+  testWidgets('publishes the light the goo gives off, following the wax', (tester) async {
+    final light = ValueNotifier<Color>(const Color(0x00000000));
+    addTearDown(light.dispose);
+    await tester.pumpWidget(_Host(child: GooBlobs(followPointer: false, lightColor: light)));
+    await tester.pump();
+    final first = light.value;
+    expect(first.a, greaterThan(0.4), reason: 'published after the first frame');
+    // Default lava palette: a warm light (more red than blue).
+    expect(first.r, greaterThan(first.b));
+
+    final seen = <Color>{first};
+    for (var i = 0; i < 40; i++) {
+      await tester.pump(const Duration(milliseconds: 250));
+      seen.add(light.value);
+    }
+    expect(seen.length, greaterThan(10), reason: 'changes as blobs heat and cool');
+  });
+
+  testWidgets('the light takes the palette\'s colors', (tester) async {
+    final light = ValueNotifier<Color>(const Color(0x00000000));
+    addTearDown(light.dispose);
+    await tester.pumpWidget(
+      _Host(
+        child: GooBlobs(
+          speed: 0,
+          followPointer: false,
+          colors: const [Color(0xFF00BBF9), Color(0xFF00F5D4)],
+          lightColor: light,
+        ),
+      ),
+    );
+    await tester.pump();
+    expect(light.value.b, greaterThan(light.value.r), reason: 'cool palette, cool light');
+  });
 }
