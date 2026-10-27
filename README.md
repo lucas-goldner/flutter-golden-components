@@ -102,7 +102,8 @@ its assets entry, unit tests or goldens.
 
 `example/web/og.png` (the Open Graph / Twitter image), the favicon, the web
 app icons and the iOS/macOS app icons are all rendered from `scripts/og/`:
-`og.html` for the card and `icon.js` for the mark. After changing either, run:
+`og.html` for the card (it composes real gallery renders from `shots/`) and
+`icon.js` for the mark. After changing either, run:
 
 ```sh
 NODE_PATH=$(npm root -g) node scripts/og/render.js   # needs playwright

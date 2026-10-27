@@ -28,101 +28,59 @@
     position: absolute; width: 700px; height: 700px; left: -300px; bottom: -420px;
     background: radial-gradient(circle, rgba(183,128,10,0.16) 0%, transparent 65%);
   }
-  .left { position: absolute; left: 72px; top: 68px; width: 560px; }
+  .left { position: absolute; left: 72px; top: 68px; width: 520px; z-index: 3; }
   .brand { display: flex; align-items: center; gap: 14px; font-weight: 600; font-size: 22px; letter-spacing: -0.2px; }
   .logo { width: 44px; height: 44px; filter: drop-shadow(0 0 18px rgba(245,196,81,0.35)); }
   h1 {
-    margin-top: 58px; font-size: 76px; line-height: 1.02; font-weight: 800; letter-spacing: -3px;
+    margin-top: 54px; font-size: 72px; line-height: 1.02; font-weight: 800; letter-spacing: -3px;
   }
   h1 .gold {
     background: linear-gradient(100deg, #FDE68A 0%, #F5C451 45%, #D99A1E 100%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  p.sub { margin-top: 24px; font-size: 24px; line-height: 1.45; color: #A1A1AA; width: 520px; }
-  .chips { position: absolute; left: 72px; bottom: 64px; display: flex; gap: 10px; }
+  p.sub { margin-top: 22px; font-size: 22px; line-height: 1.45; color: #A1A1AA; width: 440px; }
+  .chips { position: absolute; left: 72px; bottom: 56px; width: 470px; display: flex; flex-wrap: wrap; gap: 10px; z-index: 3; }
   .chip {
-    padding: 9px 16px; border-radius: 999px; font-size: 17px; font-weight: 500; color: #D4D4D8;
+    padding: 7px 14px; border-radius: 999px; font-size: 16px; font-weight: 500; color: #D4D4D8;
     background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
   }
   .chip b { color: #F5C451; font-weight: 600; }
 
-  .wall {
-    position: absolute; right: -30px; top: 70px; width: 560px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
-    transform: perspective(1400px) rotateY(-16deg) rotateX(8deg) rotateZ(-3deg);
+  .shot { position: absolute; display: block; }
+  .globe {
+    width: 620px; left: 610px; top: 6px;
+    mask-image: radial-gradient(circle closest-side, #000 88%, rgba(0,0,0,0.55) 92%, transparent 100%);
   }
-  .tile {
-    height: 150px; border-radius: 22px; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 16px; padding: 22px;
-    background: linear-gradient(160deg, #18181d 0%, #111114 100%);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 24px 50px rgba(0,0,0,0.5);
+  .globe-glow {
+    position: absolute; width: 680px; height: 680px; left: 580px; top: -24px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,196,81,0.18) 38%, rgba(245,196,81,0.06) 48%, transparent 62%);
   }
-  .tile.hero {
-    border-color: rgba(245,196,81,0.6);
-    box-shadow: 0 0 0 6px rgba(245,196,81,0.06), 0 0 70px rgba(245,196,81,0.28), 0 24px 50px rgba(0,0,0,0.55);
-  }
-  .tile.hero img { width: 92px; height: 92px; }
-  .slider { position: relative; width: 100%; height: 6px; border-radius: 3px; background: #2a2a31; }
-  .slider i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: #F5C451; }
-  .slider b { position: absolute; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%;
-    background: #121216; border: 3px solid #F5C451; box-shadow: 0 0 14px rgba(245,196,81,0.5); }
-  .slider.dim i { background: #60A5FA; } .slider.dim b { border-color: #60A5FA; box-shadow: none; }
-  .toggle { width: 74px; height: 38px; border-radius: 19px; background: #2a2a31; position: relative; }
-  .toggle b { position: absolute; top: 5px; left: 5px; width: 28px; height: 28px; border-radius: 50%; background: #71717A; }
-  .toggle.on { background: #F5C451; box-shadow: 0 0 22px rgba(245,196,81,0.35); }
-  .toggle.on b { left: 41px; background: #1A1405; }
-  .ring { width: 96px; height: 96px; }
-  .ring circle { fill: none; stroke-width: 9; }
-  .ring .track { stroke: #2a2a31; }
-  .ring .arc { stroke: #F5C451; stroke-linecap: round; stroke-dasharray: 188.5; stroke-dashoffset: 55;
-    transform: rotate(-90deg); transform-origin: 40px 40px; filter: drop-shadow(0 0 6px rgba(245,196,81,0.5)); }
-  .bars { display: flex; align-items: flex-end; gap: 9px; height: 90px; }
-  .bars i { width: 16px; border-radius: 5px; background: linear-gradient(#FDE68A, #C98A12); }
-  .bars i:nth-child(2n) { background: linear-gradient(#93C5FD, #1D4ED8); }
-  .pills { display: flex; flex-direction: column; gap: 10px; width: 100%; }
-  .pills i { height: 22px; border-radius: 11px; background: rgba(245,196,81,0.85); width: 80%; }
-  .pills i.g { background: rgba(52,211,153,0.8); width: 60%; }
-  .pills i.b { background: rgba(96,165,250,0.8); width: 92%; }
-  .avatars { display: flex; }
-  .avatars i { width: 46px; height: 46px; border-radius: 50%; margin-left: -12px; border: 3px solid #141418;
-    background: linear-gradient(135deg, #FDE68A, #B7800A); }
-  .avatars i:first-child { margin-left: 0; }
-  .avatars i.p { background: linear-gradient(135deg, #F9A8D4, #BE185D); }
-  .avatars i.b { background: linear-gradient(135deg, #93C5FD, #1D4ED8); }
-  .avatars i.g { background: linear-gradient(135deg, #6EE7B7, #047857); }
-  .wave { width: 120px; height: 60px; }
-  .wave path { fill: none; stroke: #F5C451; stroke-width: 5; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(245,196,81,0.6)); }
-  .cursor { font-size: 54px; font-weight: 700; letter-spacing: -2px; color: #F4F4F5; display: flex; align-items: center; }
-  .cursor b { width: 4px; height: 52px; margin-left: 6px; border-radius: 2px; background: #F5C451; box-shadow: 0 0 12px rgba(245,196,81,0.8); }
-  .url { z-index: 2; position: absolute; left: 74px; bottom: 136px; font-size: 18px; color: #71717A; font-weight: 500; }
+  .lamp { mask-image: radial-gradient(ellipse 48% 50% at 50% 50%, #000 55%, transparent 100%); }
+  .lamp.lava { height: 540px; left: 505px; bottom: -40px; z-index: 2; }
+  .lamp.neon { height: 380px; right: -44px; bottom: -24px; z-index: 1; opacity: 0.95; }
+  .url { z-index: 3; position: absolute; left: 74px; bottom: 160px; font-size: 18px; color: #71717A; font-weight: 500; }
 </style>
 </head>
 <body>
-  <div class="dots"></div><div class="glow"></div><div class="glow2"></div>
+  <div class="dots"></div><div class="glow2"></div>
+  <div class="globe-glow"></div>
+  <img class="shot globe" src="shots/globe.jpg" alt="">
+  <img class="shot lamp neon" src="shots/lamp-neon.jpg" alt="">
+  <img class="shot lamp lava" src="shots/lamp-lava.jpg" alt="">
   <div class="left">
     <div class="brand"><img class="logo" src="../../example/web/favicon.svg" alt="">Golden Components</div>
     <h1>Golden <span class="gold">Flutter</span><br>components</h1>
-    <p class="sub">Polished, animated components built with nothing but the widgets library.</p>
-  </div>
-  <div class="chips">
-    <div class="chip"><b>widgets</b> only</div>
-    <div class="chip">No Material</div>
-    <div class="chip">No Cupertino</div>
-    <div class="chip">Web · iOS · macOS</div>
-  </div>
-
-  <div class="wall">
-    <div class="tile"><div class="slider"><i style="width:62%"></i><b style="left:62%"></b></div><div class="slider dim"><i style="width:35%"></i><b style="left:35%"></b></div></div>
-    <div class="tile"><div class="toggle on"><b></b></div><div class="toggle"><b></b></div></div>
-    <div class="tile"><svg viewBox="0 0 80 80" class="ring"><circle cx="40" cy="40" r="30" class="track"/><circle cx="40" cy="40" r="30" class="arc"/></svg></div>
-    <div class="tile"><div class="bars"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:65%"></i></div></div>
-    <div class="tile hero"><img src="../../example/web/favicon.svg" alt=""></div>
-    <div class="tile"><div class="pills"><i></i><i class="g"></i><i class="b"></i></div></div>
-    <div class="tile"><div class="avatars"><i></i><i class="p"></i><i class="b"></i><i class="g"></i></div></div>
-    <div class="tile"><svg viewBox="0 0 120 60" class="wave"><path d="M2 40 C 22 10, 38 10, 58 32 S 96 58, 118 18"/></svg></div>
-    <div class="tile"><div class="cursor"><span>Aa</span><b></b></div></div>
+    <p class="sub">Polished, animated components built with nothing but the widgets library.<br>No Material. No Cupertino.</p>
   </div>
   <div class="url">flutter-golden-components.vercel.app</div>
+  <div class="chips">
+    <div class="chip"><b>Globe</b></div>
+    <div class="chip"><b>GooBlobs</b></div>
+    <div class="chip">EndlessGlideGrid</div>
+    <div class="chip">Marquee</div>
+    <div class="chip">LiveFeed</div>
+    <div class="chip">BlurFade</div>
+    <div class="chip">SmoothCaret</div>
+  </div>
 </body>
 </html>
