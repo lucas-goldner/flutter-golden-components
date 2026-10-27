@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../demos/blur_fade_demo.dart';
+import '../demos/digit_roll_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
 import '../demos/globe_demo.dart';
 import '../demos/goo_blobs_demo.dart';
@@ -123,6 +124,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['animation', 'canvas', 'ambient'],
     sourcePath: 'lib/src/goo_blobs/goo_blobs.dart',
     builder: (context) => const GooBlobsDemo(),
+  ),
+  GalleryComponent(
+    number: 8,
+    slug: 'digit-roll',
+    name: 'Digit Roll',
+    description:
+        'A number whose digits roll to each new value like an odometer, one spring per digit, '
+        'rippling from the right with motion blur. New places grow in, old ones shrink away.',
+    tags: const ['text', 'number', 'spring'],
+    sourcePath: 'lib/src/digit_roll/digit_roll.dart',
+    builder: (context) => const DigitRollDemo(),
   ),
 ];
 

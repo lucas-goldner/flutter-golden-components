@@ -21,6 +21,7 @@ flutter:
   # Component sources ship as assets so the gallery can show and copy them.
   assets:
     - lib/src/blur_fade/
+    - lib/src/digit_roll/
     - lib/src/endless_glide_grid/
     - lib/src/globe/
     - lib/src/goo_blobs/

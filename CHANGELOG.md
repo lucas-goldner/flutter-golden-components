@@ -1,5 +1,11 @@
 ## Unreleased
 
+- `DigitRoll`: an odometer-style number. Each digit rolls on its own spring
+  with a stagger from the right, by an auto/up/down/shortest direction,
+  with motion blur and soft edges. New places grow in and old ones shrink
+  away. Built-in `DigitRollFormat` (decimals, min digits, grouping,
+  separators, prefix/suffix), per-digit decoration, tabular figures and
+  reduced-motion support.
 - `GooBlobs`: lava-lamp metaballs (blur + alpha threshold goo with a glow
   layer), heat-driven rise and fall, wax pool, pointer blob, palettes,
   gooeyness, glow and reduced-motion support.
