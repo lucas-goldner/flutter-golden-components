@@ -28,4 +28,5 @@ flutter:
     - lib/src/live_feed/
     - lib/src/marquee/
     - lib/src/smooth_caret/
+    - lib/src/step_flow/
     - lib/src/stretch_slider/

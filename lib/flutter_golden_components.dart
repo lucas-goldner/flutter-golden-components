@@ -10,4 +10,5 @@ export 'src/goo_blobs/goo_blobs.dart';
 export 'src/live_feed/live_feed.dart';
 export 'src/marquee/marquee.dart';
 export 'src/smooth_caret/smooth_caret_field.dart';
+export 'src/step_flow/step_flow.dart';
 export 'src/stretch_slider/stretch_slider.dart';

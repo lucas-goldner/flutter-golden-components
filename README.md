@@ -26,6 +26,7 @@ for the full contributor rules.
 | 007 | `GooBlobs` | Glowing blobs of goo that drift like wax in a lava lamp: they heat up, rise, cool, sink and melt into each other. One follows your pointer. |
 | 008 | `DigitRoll` | A number whose digits roll to each new value like an odometer: one spring per digit, rippling from the right with motion blur. Built-in formatting (grouping, decimals, prefix/suffix). |
 | 009 | `StretchSlider` | A slider that stretches like rubber when dragged past either end and snaps back on a spring. Horizontal or vertical, steps and ticks, thumb, signed fills, icons beside or inside the track. |
+| 010 | `StepFlow` | A multi-step flow with a numbers, dots or bars indicator (or a side rail), content that slides in the direction of travel while its height eases, and a Back / Continue footer. |
 
 ## Usage
 

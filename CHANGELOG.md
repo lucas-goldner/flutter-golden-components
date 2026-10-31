@@ -1,5 +1,12 @@
 ## Unreleased
 
+- `StepFlow`: a multi-step flow. Numbers (with a gliding ring and
+  self-drawing checks), dots or bars indicator, or a vertical rail with
+  titles and subtitles; slide / fade / no transition in the direction of
+  travel with the height easing between steps; Back / Continue / Complete
+  footer that folds away on completion; tappable indicator with a linear
+  mode, `canContinue` gating, keyboard and screen reader support, and
+  reduced-motion support.
 - `StretchSlider`: a slider whose track stretches like rubber when dragged
   past either end and snaps back on a spring. Spring-eased fill, thickens
   while active, horizontal or vertical, divisions with ticks, thumb, fill

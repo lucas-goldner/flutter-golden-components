@@ -8,6 +8,7 @@ import '../demos/goo_blobs_demo.dart';
 import '../demos/live_feed_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
+import '../demos/step_flow_demo.dart';
 import '../demos/stretch_slider_demo.dart';
 
 /// One component listed in the gallery.
@@ -147,6 +148,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['input', 'slider', 'spring'],
     sourcePath: 'lib/src/stretch_slider/stretch_slider.dart',
     builder: (context) => const StretchSliderDemo(),
+  ),
+  GalleryComponent(
+    number: 10,
+    slug: 'step-flow',
+    name: 'Step Flow',
+    description:
+        'A multi-step flow: a numbers, dots or bars indicator (or a side rail), content that '
+        'slides in the direction of travel while its height eases, and a Back / Continue footer.',
+    tags: const ['navigation', 'form', 'animation'],
+    sourcePath: 'lib/src/step_flow/step_flow.dart',
+    builder: (context) => const StepFlowDemo(),
   ),
 ];
 
