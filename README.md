@@ -25,6 +25,7 @@ for the full contributor rules.
 | 006 | `Globe` | An interactive dotted globe: highlight countries or continents, draw flight routes that animate from start to end with a plane, pin pulsing markers, spin it with momentum, tap countries. |
 | 007 | `GooBlobs` | Glowing blobs of goo that drift like wax in a lava lamp: they heat up, rise, cool, sink and melt into each other. One follows your pointer. |
 | 008 | `DigitRoll` | A number whose digits roll to each new value like an odometer: one spring per digit, rippling from the right with motion blur. Built-in formatting (grouping, decimals, prefix/suffix). |
+| 009 | `StretchSlider` | A slider that stretches like rubber when dragged past either end and snaps back on a spring. Horizontal or vertical, steps and ticks, thumb, signed fills, icons beside or inside the track. |
 
 ## Usage
 

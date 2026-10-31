@@ -8,6 +8,7 @@ import '../demos/goo_blobs_demo.dart';
 import '../demos/live_feed_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
+import '../demos/stretch_slider_demo.dart';
 
 /// One component listed in the gallery.
 @immutable
@@ -135,6 +136,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['text', 'number', 'spring'],
     sourcePath: 'lib/src/digit_roll/digit_roll.dart',
     builder: (context) => const DigitRollDemo(),
+  ),
+  GalleryComponent(
+    number: 9,
+    slug: 'stretch-slider',
+    name: 'Stretch Slider',
+    description:
+        'A slider that stretches like rubber when you drag past either end, then snaps back on a '
+        'spring. Horizontal or vertical, with steps, a thumb, signed fills and icons inside or out.',
+    tags: const ['input', 'slider', 'spring'],
+    sourcePath: 'lib/src/stretch_slider/stretch_slider.dart',
+    builder: (context) => const StretchSliderDemo(),
   ),
 ];
 

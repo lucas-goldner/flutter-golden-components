@@ -1,5 +1,11 @@
 ## Unreleased
 
+- `StretchSlider`: a slider whose track stretches like rubber when dragged
+  past either end and snaps back on a spring. Spring-eased fill, thickens
+  while active, horizontal or vertical, divisions with ticks, thumb, fill
+  from an origin, leading/trailing widgets beside or inside the track
+  (recolored where the fill covers them), relative drags, keyboard and
+  screen reader support, and reduced-motion support.
 - `DigitRoll`: an odometer-style number. Each digit rolls on its own spring
   with a stagger from the right, by an auto/up/down/shortest direction,
   with motion blur and soft edges. New places grow in and old ones shrink
