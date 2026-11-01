@@ -39,7 +39,7 @@ class _StepFlowDemoState extends State<StepFlowDemo> {
     _transition = StepFlowTransition.slide;
     _linear = false;
     _requirePlan = true;
-    _duration = 420;
+    _duration = 560;
     _plan = null;
   }
 

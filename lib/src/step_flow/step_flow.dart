@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/physics.dart';
 import 'package:flutter/widgets.dart';
 
 /// One step of a [StepFlow].
@@ -45,6 +46,37 @@ enum StepFlowTransition {
   none,
 }
 
+/// The springy curve every [StepFlow] motion runs on: a damped spring
+/// that overshoots by about 8% and settles back, normalised to 0..1.
+const Curve _spring = _SpringCurve(dampingRatio: 0.62);
+
+/// A [Curve] that follows an underdamped spring released from 0 toward 1.
+///
+/// The spring is tuned to come to rest by `t == 1`; the tiny remainder is
+/// eased out so the curve ends exactly on 1.
+class _SpringCurve extends Curve {
+  const _SpringCurve({required this.dampingRatio});
+
+  /// Below 1 the spring overshoots; lower values bounce more.
+  final double dampingRatio;
+
+  /// Natural frequency that lets the oscillation die down (to ~0.3%) by
+  /// `t == 1`.
+  double get _omega => 5.8 / dampingRatio;
+
+  @override
+  double transformInternal(double t) {
+    final simulation = SpringSimulation(
+      SpringDescription.withDampingRatio(mass: 1, stiffness: _omega * _omega, ratio: dampingRatio),
+      0,
+      1,
+      0,
+    );
+    final end = simulation.x(1);
+    return simulation.x(t) + (1 - end) * t;
+  }
+}
+
 /// A multi-step flow: a step indicator, the current step's content and a
 /// Back / Continue footer.
 ///
@@ -80,7 +112,8 @@ class StepFlow extends StatefulWidget {
     this.nextLabel = 'Continue',
     this.finishLabel = 'Complete',
     this.accentColor,
-    this.duration = const Duration(milliseconds: 420),
+    this.duration = const Duration(milliseconds: 560),
+    this.slideDistance = 36,
     this.railWidth = 200,
   }) : assert(initialStep >= 0);
 
@@ -137,8 +170,13 @@ class StepFlow extends StatefulWidget {
   /// Defaults to the ambient text color.
   final Color? accentColor;
 
-  /// Length of the step change animation.
+  /// Length of the step change animation. Content, height, the indicator
+  /// and the footer all move on one spring over this time.
   final Duration duration;
+
+  /// How far, in logical pixels, content travels in a
+  /// [StepFlowTransition.slide]. Short distances read as one smooth motion.
+  final double slideDistance;
 
   /// Width of the rail in [Axis.vertical] layouts.
   final double railWidth;
@@ -212,6 +250,8 @@ class _StepFlowState extends State<StepFlow> with SingleTickerProviderStateMixin
           animation: _swap,
           transition: widget.transition,
           duration: _duration,
+          axis: widget.axis,
+          slideDistance: widget.slideDistance,
           forward: _previous == null || _previous! < _step,
           incoming: KeyedSubtree(
             key: ValueKey(_step),
@@ -287,6 +327,8 @@ class _Content extends StatelessWidget {
     required this.animation,
     required this.transition,
     required this.duration,
+    required this.axis,
+    required this.slideDistance,
     required this.forward,
     required this.incoming,
     required this.outgoing,
@@ -295,49 +337,89 @@ class _Content extends StatelessWidget {
   final Animation<double> animation;
   final StepFlowTransition transition;
   final Duration duration;
+
+  /// The flow's layout: content slides across in horizontal flows and up
+  /// or down beside a vertical rail.
+  final Axis axis;
+  final double slideDistance;
   final bool forward;
   final Widget incoming;
   final Widget? outgoing;
 
+  /// Progress through the part of the swap between [from] and [to].
+  static double _window(double t, double from, double to) =>
+      ((t - from) / (to - from)).clamp(0.0, 1.0);
+
+  Offset _along(double distance) =>
+      axis == Axis.horizontal ? Offset(distance, 0) : Offset(0, distance);
+
   @override
   Widget build(BuildContext context) {
     return ClipRect(
+      // Clip only across the flow's axis (for the height animation): along
+      // it, sliding content may overshoot into the surrounding padding.
+      clipper: _CrossAxisClipper(axis),
       child: _Resize(
         duration: duration,
-        child: LayoutBuilder(
-          builder: (context, constraints) => AnimatedBuilder(
-            animation: animation,
-            builder: (context, _) {
-              final t = Curves.easeOutCubic.transform(animation.value);
-              final outgoing = this.outgoing;
-              final shift = switch (transition) {
-                StepFlowTransition.slide => constraints.maxWidth * 0.6,
-                StepFlowTransition.fade => 16.0,
-                StepFlowTransition.none => 0.0,
-              };
-              final sign = forward ? 1.0 : -1.0;
-              return Stack(
-                clipBehavior: Clip.none,
-                fit: StackFit.passthrough,
-                children: [
-                  if (outgoing != null && t < 1)
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      top: 0,
-                      child: IgnorePointer(
-                        child: _Shifted(dx: -sign * shift * t, opacity: 1 - t, child: outgoing),
+        child: AnimatedBuilder(
+          animation: animation,
+          builder: (context, _) {
+            final t = animation.value;
+            final outgoing = this.outgoing;
+            final distance = transition == StepFlowTransition.slide ? slideDistance : 0.0;
+            final sign = forward ? 1.0 : -1.0;
+            // The old step clears out quickly with a short ease-in drift; the
+            // new one fades in a beat later and settles on the spring.
+            final outOpacity = 1 - Curves.easeOut.transform(_window(t, 0, 0.22));
+            final outShift = -sign * distance * Curves.easeInCubic.transform(_window(t, 0, 0.35));
+            final inOpacity = Curves.easeOutCubic.transform(_window(t, 0.15, 0.7));
+            final inShift = sign * distance * (1 - _spring.transform(t));
+            final pending = outgoing != null && t < 1;
+            return Stack(
+              clipBehavior: Clip.none,
+              fit: StackFit.passthrough,
+              children: [
+                if (pending)
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    child: IgnorePointer(
+                      child: _Shifted(
+                        offset: _along(outShift),
+                        opacity: outOpacity,
+                        child: outgoing,
                       ),
                     ),
-                  _Shifted(dx: sign * shift * (1 - t), opacity: t, child: incoming),
-                ],
-              );
-            },
-          ),
+                  ),
+                _Shifted(
+                  offset: pending ? _along(inShift) : Offset.zero,
+                  opacity: pending ? inOpacity : 1,
+                  child: incoming,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
+}
+
+/// Clips top and bottom (or, for a vertical flow, left and right) only.
+class _CrossAxisClipper extends CustomClipper<Rect> {
+  const _CrossAxisClipper(this.axis);
+
+  final Axis axis;
+
+  @override
+  Rect getClip(Size size) => switch (axis) {
+    Axis.horizontal => Rect.fromLTRB(-1e4, 0, size.width + 1e4, size.height),
+    Axis.vertical => Rect.fromLTRB(0, 0, size.width, size.height),
+  };
+
+  @override
+  bool shouldReclip(_CrossAxisClipper old) => old.axis != axis;
 }
 
 /// [AnimatedSize], or just [child] when [duration] is zero (an
@@ -353,7 +435,7 @@ class _Resize extends StatelessWidget {
     if (duration == Duration.zero) return child;
     return AnimatedSize(
       duration: duration,
-      curve: Curves.easeOutCubic,
+      curve: _spring,
       alignment: Alignment.topCenter,
       child: child,
     );
@@ -361,9 +443,9 @@ class _Resize extends StatelessWidget {
 }
 
 class _Shifted extends StatelessWidget {
-  const _Shifted({required this.dx, required this.opacity, required this.child});
+  const _Shifted({required this.offset, required this.opacity, required this.child});
 
-  final double dx;
+  final Offset offset;
   final double opacity;
   final Widget child;
 
@@ -371,7 +453,7 @@ class _Shifted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Opacity(
       opacity: opacity.clamp(0.0, 1.0),
-      child: Transform.translate(offset: Offset(dx, 0), child: child),
+      child: Transform.translate(offset: offset, child: child),
     );
   }
 }
@@ -761,7 +843,7 @@ class _NumbersRow extends StatelessWidget {
                 ),
               AnimatedPositioned(
                 duration: duration,
-                curve: Curves.easeOutBack,
+                curve: _spring,
                 left: active * gap,
                 top: 0,
                 width: _badge + _ring * 2,
@@ -941,10 +1023,10 @@ class _Bar extends StatelessWidget {
         child: TweenAnimationBuilder<double>(
           tween: Tween(end: filled ? 1 : 0),
           duration: duration,
-          curve: Curves.easeOutCubic,
+          curve: _spring,
           builder: (context, t, _) => FractionallySizedBox(
             alignment: Alignment.centerLeft,
-            widthFactor: t,
+            widthFactor: t.clamp(0.0, 1.0),
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: colors.accent,
@@ -972,7 +1054,7 @@ class _Dot extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       child: AnimatedContainer(
         duration: duration,
-        curve: Curves.easeOutBack,
+        curve: _spring,
         width: status == _Status.current ? 26 : 9,
         height: 9,
         decoration: BoxDecoration(

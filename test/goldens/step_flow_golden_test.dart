@@ -116,7 +116,7 @@ void main() {
       tester,
       name: 'slide',
       flow: const StepFlow(steps: _steps, indicator: StepFlowIndicator.bars),
-      ms: const [0, 80, 160, 260, 600],
+      ms: const [0, 60, 120, 180, 240, 320, 420, 700],
     );
     await expectSheet(tester, frames, 'step_flow_slide.png', axis: Axis.horizontal);
     await tester.pumpWidget(const SizedBox());
