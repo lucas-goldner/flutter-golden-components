@@ -25,6 +25,8 @@ flutter:
     - lib/src/endless_glide_grid/
     - lib/src/globe/
     - lib/src/goo_blobs/
+    - lib/src/jump_text/
+    - lib/src/kinetic_line/
     - lib/src/live_feed/
     - lib/src/marquee/
     - lib/src/smooth_caret/

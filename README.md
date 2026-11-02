@@ -27,6 +27,8 @@ for the full contributor rules.
 | 008 | `DigitRoll` | A number whose digits roll to each new value like an odometer: one spring per digit, rippling from the right with motion blur. Built-in formatting (grouping, decimals, prefix/suffix). |
 | 009 | `StretchSlider` | A slider that stretches like rubber when dragged past either end and snaps back on a spring. Horizontal or vertical, steps and ticks, thumb, signed fills, icons beside or inside the track. |
 | 010 | `StepFlow` | A multi-step flow with a numbers, dots or bars indicator (or a side rail), content that slides in the direction of travel while its height eases, and a Back / Continue footer. |
+| 011 | `JumpText` | Words or characters spring up from below with a tilt, one after another, like story captions. |
+| 012 | `KineticLine` | A line that builds itself word by word around its centre: each word slides in from the right with a soft blur and pushes the line along, holds, then lifts out for the next phrase. |
 
 ## Usage
 

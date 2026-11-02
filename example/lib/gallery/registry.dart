@@ -5,6 +5,8 @@ import '../demos/digit_roll_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
 import '../demos/globe_demo.dart';
 import '../demos/goo_blobs_demo.dart';
+import '../demos/jump_text_demo.dart';
+import '../demos/kinetic_line_demo.dart';
 import '../demos/live_feed_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
@@ -159,6 +161,28 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['navigation', 'form', 'animation'],
     sourcePath: 'lib/src/step_flow/step_flow.dart',
     builder: (context) => const StepFlowDemo(),
+  ),
+  GalleryComponent(
+    number: 11,
+    slug: 'jump-text',
+    name: 'Jump Text',
+    description:
+        'Words or letters spring up from below with a tilt, one after another, like story '
+        'captions. Spring, stagger, rise and tilt are all adjustable.',
+    tags: const ['text', 'spring', 'entrance'],
+    sourcePath: 'lib/src/jump_text/jump_text.dart',
+    builder: (context) => const JumpTextDemo(),
+  ),
+  GalleryComponent(
+    number: 12,
+    slug: 'kinetic-line',
+    name: 'Kinetic Line',
+    description:
+        'A line that builds itself word by word: each word slides in from the right with a soft '
+        'blur and pushes the line so it stays centred, holds, then lifts out for the next phrase.',
+    tags: const ['text', 'loop', 'blur'],
+    sourcePath: 'lib/src/kinetic_line/kinetic_line.dart',
+    builder: (context) => const KineticLineDemo(),
   ),
 ];
 

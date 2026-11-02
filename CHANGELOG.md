@@ -1,5 +1,12 @@
 ## Unreleased
 
+- `KineticLine`: cycles phrases that build word by word around the
+  centre (blurred entries from the right that push the line along, hold,
+  lift-out exit). Configurable timing, distances, blur and easing, speed
+  multiplier, loop, and reduced-motion support.
+- `JumpText`: words or characters spring up from below with a tilt, one
+  after another. Word or character units (words never break), spring,
+  stagger, delay, rise, tilt, `onComplete`, and reduced-motion support.
 - `StepFlow`: a multi-step flow. Numbers (with a gliding ring and
   self-drawing checks), dots or bars indicator, or a vertical rail with
   titles and subtitles; slide / fade / no transition in the direction of
