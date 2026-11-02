@@ -29,6 +29,7 @@ for the full contributor rules.
 | 010 | `StepFlow` | A multi-step flow with a numbers, dots or bars indicator (or a side rail), content that slides in the direction of travel while its height eases, and a Back / Continue footer. |
 | 011 | `JumpText` | Words or characters spring up from below with a tilt, one after another, like story captions. |
 | 012 | `KineticLine` | A line that builds itself word by word around its centre: each word slides in from the right with a soft blur and pushes the line along, holds, then lifts out for the next phrase. |
+| 013 | `GlideHighlight` | One highlight that glides on a spring behind whichever item is active, for tabs, toolbars or a grid of cards. Tap, keyboard or hover. |
 
 ## Usage
 

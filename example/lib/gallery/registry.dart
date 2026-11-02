@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../demos/blur_fade_demo.dart';
 import '../demos/digit_roll_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
+import '../demos/glide_highlight_demo.dart';
 import '../demos/globe_demo.dart';
 import '../demos/goo_blobs_demo.dart';
 import '../demos/jump_text_demo.dart';
@@ -183,6 +184,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['text', 'loop', 'blur'],
     sourcePath: 'lib/src/kinetic_line/kinetic_line.dart',
     builder: (context) => const KineticLineDemo(),
+  ),
+  GalleryComponent(
+    number: 13,
+    slug: 'glide-highlight',
+    name: 'Glide Highlight',
+    description:
+        'One highlight that glides on a spring behind whichever item is active: tabs, toolbars '
+        'or a grid of cards. Activates on tap, keyboard or hover.',
+    tags: const ['navigation', 'spring', 'hover'],
+    sourcePath: 'lib/src/glide_highlight/glide_highlight.dart',
+    builder: (context) => const GlideHighlightDemo(),
   ),
 ];
 

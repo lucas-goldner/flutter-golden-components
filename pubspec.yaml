@@ -23,6 +23,7 @@ flutter:
     - lib/src/blur_fade/
     - lib/src/digit_roll/
     - lib/src/endless_glide_grid/
+    - lib/src/glide_highlight/
     - lib/src/globe/
     - lib/src/goo_blobs/
     - lib/src/jump_text/

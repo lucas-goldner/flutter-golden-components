@@ -1,5 +1,10 @@
 ## Unreleased
 
+- `GlideHighlight`: a single highlight that glides on a spring behind the
+  active item of any layout (row, wrap, grid), fading in and out when the
+  selection is set or cleared. Tap, Enter/Space or hover activation,
+  controlled or uncontrolled selection, custom decoration and spring,
+  follows layout changes, and reduced-motion support.
 - `KineticLine`: cycles phrases that build word by word around the
   centre (blurred entries from the right that push the line along, hold,
   lift-out exit). Configurable timing, distances, blur and easing, speed
