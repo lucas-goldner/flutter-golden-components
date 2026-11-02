@@ -1,7 +1,6 @@
 @Tags(['golden'])
 library;
 
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_golden_components/flutter_golden_components.dart';

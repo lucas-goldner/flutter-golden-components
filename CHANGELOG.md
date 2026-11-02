@@ -1,5 +1,12 @@
 ## Unreleased
 
+- `MorphCard`: a card whose box morphs on a spring into a centred dialog
+  (corner radius, cross-fading content) over a tinted, blurred backdrop,
+  and back. `MorphCardReveal` for content that drifts in after the morph,
+  `MorphCardClose` and `MorphCard.close`, barrier tap and Escape to close,
+  keyboard opening, focus moved into the dialog and back to the card,
+  inherits the card's text style and icon theme, and reduced-motion
+  support.
 - `MagnifyDock`: icons swell on a spring as the pointer passes over them
   (configurable base and magnified size, reach and falloff curve), the
   dock rises to fit, and the hovered icon's label floats up. Touch drags,

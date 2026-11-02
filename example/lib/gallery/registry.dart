@@ -11,6 +11,7 @@ import '../demos/kinetic_line_demo.dart';
 import '../demos/live_feed_demo.dart';
 import '../demos/magnify_dock_demo.dart';
 import '../demos/marquee_demo.dart';
+import '../demos/morph_card_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 import '../demos/step_flow_demo.dart';
 import '../demos/stretch_slider_demo.dart';
@@ -207,6 +208,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['navigation', 'hover', 'spring'],
     sourcePath: 'lib/src/magnify_dock/magnify_dock.dart',
     builder: (context) => const MagnifyDockDemo(),
+  ),
+  GalleryComponent(
+    number: 15,
+    slug: 'morph-card',
+    name: 'Morph Card',
+    description:
+        'A card that morphs on a spring into a centred dialog over a blurred backdrop, and back. '
+        'Close by tapping outside, Escape or a close button.',
+    tags: const ['dialog', 'spring', 'card'],
+    sourcePath: 'lib/src/morph_card/morph_card.dart',
+    builder: (context) => const MorphCardDemo(),
   ),
 ];
 

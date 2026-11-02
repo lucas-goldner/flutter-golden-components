@@ -31,6 +31,7 @@ for the full contributor rules.
 | 012 | `KineticLine` | A line that builds itself word by word around its centre: each word slides in from the right with a soft blur and pushes the line along, holds, then lifts out for the next phrase. |
 | 013 | `GlideHighlight` | One highlight that glides on a spring behind whichever item is active, for tabs, toolbars or a grid of cards. Tap, keyboard or hover. |
 | 014 | `MagnifyDock` | A dock whose icons swell on a spring as the pointer passes over them, with floating labels. Touch drags and keyboard focus magnify too. |
+| 015 | `MorphCard` | A card that morphs on a spring into a centred dialog over a blurred backdrop, and back. Barrier tap, Escape or a close button closes it. |
 
 ## Usage
 
