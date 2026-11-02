@@ -9,6 +9,7 @@ import '../demos/goo_blobs_demo.dart';
 import '../demos/jump_text_demo.dart';
 import '../demos/kinetic_line_demo.dart';
 import '../demos/live_feed_demo.dart';
+import '../demos/magnify_dock_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 import '../demos/step_flow_demo.dart';
@@ -195,6 +196,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['navigation', 'spring', 'hover'],
     sourcePath: 'lib/src/glide_highlight/glide_highlight.dart',
     builder: (context) => const GlideHighlightDemo(),
+  ),
+  GalleryComponent(
+    number: 14,
+    slug: 'magnify-dock',
+    name: 'Magnify Dock',
+    description:
+        'A dock whose icons swell on a spring as the pointer passes over them, with labels '
+        'that float up. Works with touch drags and the keyboard too.',
+    tags: const ['navigation', 'hover', 'spring'],
+    sourcePath: 'lib/src/magnify_dock/magnify_dock.dart',
+    builder: (context) => const MagnifyDockDemo(),
   ),
 ];
 

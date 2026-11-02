@@ -29,6 +29,7 @@ flutter:
     - lib/src/jump_text/
     - lib/src/kinetic_line/
     - lib/src/live_feed/
+    - lib/src/magnify_dock/
     - lib/src/marquee/
     - lib/src/smooth_caret/
     - lib/src/step_flow/

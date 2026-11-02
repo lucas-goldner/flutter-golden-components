@@ -1,5 +1,10 @@
 ## Unreleased
 
+- `MagnifyDock`: icons swell on a spring as the pointer passes over them
+  (configurable base and magnified size, reach and falloff curve), the
+  dock rises to fit, and the hovered icon's label floats up. Touch drags,
+  keyboard focus (magnifies like a hover) with Enter/Space activation,
+  and reduced-motion support.
 - `GlideHighlight`: a single highlight that glides on a spring behind the
   active item of any layout (row, wrap, grid), fading in and out when the
   selection is set or cleared. Tap, Enter/Space or hover activation,
