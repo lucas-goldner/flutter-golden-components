@@ -14,6 +14,7 @@ import '../demos/live_feed_demo.dart';
 import '../demos/magnify_dock_demo.dart';
 import '../demos/marquee_demo.dart';
 import '../demos/morph_card_demo.dart';
+import '../demos/notch_card_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 import '../demos/step_flow_demo.dart';
 import '../demos/stretch_slider_demo.dart';
@@ -243,6 +244,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['background', 'ambient', 'gradient'],
     sourcePath: 'lib/src/aurora_backdrop/aurora_backdrop.dart',
     builder: (context) => const AuroraBackdropDemo(),
+  ),
+  GalleryComponent(
+    number: 18,
+    slug: 'notch-card',
+    name: 'Notch Card',
+    description:
+        'A card whose image has labels notched into its corners with concave fillets. The image '
+        'zooms and an action rises in on hover; the text staggers in.',
+    tags: const ['card', 'hover', 'layout'],
+    sourcePath: 'lib/src/notch_card/notch_card.dart',
+    builder: (context) => const NotchCardDemo(),
   ),
 ];
 

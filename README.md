@@ -34,6 +34,7 @@ for the full contributor rules.
 | 015 | `MorphCard` | A card that morphs on a spring into a centred dialog over a blurred backdrop, and back. Barrier tap, Escape or a close button closes it. |
 | 016 | `CylinderCarousel` | Cards around a 3D cylinder you spin by dragging; it coasts, settles on a card, turns with arrow keys and opens cards in a lightbox. |
 | 017 | `AuroraBackdrop` | Soft curtains of aurora light drifting behind your content and gathering in one corner, on a light or dark sky. |
+| 018 | `NotchCard` | A card whose image has labels notched into its corners with concave fillets; the image zooms and an action rises in on hover. |
 
 ## Usage
 

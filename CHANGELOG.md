@@ -1,5 +1,10 @@
 ## Unreleased
 
+- `NotchCard`: a card surface with hover state (pointer, or tap on
+  touch) and a deepening shadow; `NotchCardMedia` with `NotchLabel`s set
+  into any corner by concave fillets and a hover zoom;
+  `NotchCardReveal` for hover-revealed actions; `NotchCardStagger` for a
+  rising, un-blurring text entrance; reduced-motion support.
 - `AuroraBackdrop`: two layers of slanted bands drifting past each other,
   blurred and faded out from a focus point, behind any child. Palette,
   light or dark sky, speed, intensity, softness, tilt and focus; holds

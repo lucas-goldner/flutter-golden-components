@@ -16,6 +16,7 @@ export 'src/live_feed/live_feed.dart';
 export 'src/magnify_dock/magnify_dock.dart';
 export 'src/marquee/marquee.dart';
 export 'src/morph_card/morph_card.dart';
+export 'src/notch_card/notch_card.dart';
 export 'src/smooth_caret/smooth_caret_field.dart';
 export 'src/step_flow/step_flow.dart';
 export 'src/stretch_slider/stretch_slider.dart';
