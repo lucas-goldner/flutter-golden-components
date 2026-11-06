@@ -16,6 +16,7 @@ import '../demos/marquee_demo.dart';
 import '../demos/metal_button_demo.dart';
 import '../demos/morph_card_demo.dart';
 import '../demos/notch_card_demo.dart';
+import '../demos/pill_select_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 import '../demos/step_flow_demo.dart';
 import '../demos/stretch_slider_demo.dart';
@@ -267,6 +268,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['button', 'shader', 'ambient'],
     sourcePath: 'lib/src/metal_button/metal_button.dart',
     builder: (context) => const MetalButtonDemo(),
+  ),
+  GalleryComponent(
+    number: 20,
+    slug: 'pill-select',
+    name: 'Pill Select',
+    description:
+        'A pill-shaped select whose options open in a frosted popup, with the chosen option '
+        'right over the field like a desktop menu. Icons, disabled options, full keyboard support.',
+    tags: const ['input', 'menu', 'popover'],
+    sourcePath: 'lib/src/pill_select/pill_select.dart',
+    builder: (context) => const PillSelectDemo(),
   ),
 ];
 

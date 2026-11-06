@@ -1,5 +1,11 @@
 ## Unreleased
 
+- `PillSelect`: a pill field that opens a frosted, blurred list of
+  options, aligned so the chosen one sits over the field (or dropping
+  below); icons, disabled options, placeholder and list label; hover and
+  arrow-key highlighting, Enter/Space to choose, Escape or an outside tap
+  to close; screen reader labels; light/dark aware; reduced-motion
+  support.
 - `MetalButton`: a ring of flowing metal (chromatic, silver, gold or a
   custom palette) with a counter-rotating glint and soft glow around a
   filled, outline, soft or ghost surface; any height, width and radius
