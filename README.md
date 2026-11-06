@@ -32,6 +32,8 @@ for the full contributor rules.
 | 013 | `GlideHighlight` | One highlight that glides on a spring behind whichever item is active, for tabs, toolbars or a grid of cards. Tap, keyboard or hover. |
 | 014 | `MagnifyDock` | A dock whose icons swell on a spring as the pointer passes over them, with floating labels. Touch drags and keyboard focus magnify too. |
 | 015 | `MorphCard` | A card that morphs on a spring into a centred dialog over a blurred backdrop, and back. Barrier tap, Escape or a close button closes it. |
+| 016 | `CylinderCarousel` | Cards around a 3D cylinder you spin by dragging; it coasts, settles on a card, turns with arrow keys and opens cards in a lightbox. |
+| 017 | `AuroraBackdrop` | Soft curtains of aurora light drifting behind your content and gathering in one corner, on a light or dark sky. |
 
 ## Usage
 

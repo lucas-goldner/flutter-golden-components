@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 
+import '../demos/aurora_backdrop_demo.dart';
 import '../demos/blur_fade_demo.dart';
+import '../demos/cylinder_carousel_demo.dart';
 import '../demos/digit_roll_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
 import '../demos/glide_highlight_demo.dart';
@@ -219,6 +221,28 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['dialog', 'spring', 'card'],
     sourcePath: 'lib/src/morph_card/morph_card.dart',
     builder: (context) => const MorphCardDemo(),
+  ),
+  GalleryComponent(
+    number: 16,
+    slug: 'cylinder-carousel',
+    name: 'Cylinder Carousel',
+    description:
+        'Cards around a 3D cylinder you spin by dragging: it coasts with the fling and settles '
+        'on a card. Arrow keys turn it; tap a card to open it large.',
+    tags: const ['carousel', '3d', 'gesture'],
+    sourcePath: 'lib/src/cylinder_carousel/cylinder_carousel.dart',
+    builder: (context) => const CylinderCarouselDemo(),
+  ),
+  GalleryComponent(
+    number: 17,
+    slug: 'aurora-backdrop',
+    name: 'Aurora Backdrop',
+    description:
+        'Soft curtains of aurora light drifting behind your content, gathering in one corner. '
+        'Palettes, light and dark skies, speed, intensity and softness.',
+    tags: const ['background', 'ambient', 'gradient'],
+    sourcePath: 'lib/src/aurora_backdrop/aurora_backdrop.dart',
+    builder: (context) => const AuroraBackdropDemo(),
   ),
 ];
 

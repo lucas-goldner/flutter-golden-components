@@ -2,7 +2,9 @@
 /// the `widgets` library: no Material, no Cupertino.
 library;
 
+export 'src/aurora_backdrop/aurora_backdrop.dart';
 export 'src/blur_fade/blur_fade.dart';
+export 'src/cylinder_carousel/cylinder_carousel.dart';
 export 'src/digit_roll/digit_roll.dart';
 export 'src/endless_glide_grid/endless_glide_grid.dart';
 export 'src/glide_highlight/glide_highlight.dart';

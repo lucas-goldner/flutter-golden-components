@@ -1,5 +1,13 @@
 ## Unreleased
 
+- `AuroraBackdrop`: two layers of slanted bands drifting past each other,
+  blurred and faded out from a focus point, behind any child. Palette,
+  light or dark sky, speed, intensity, softness, tilt and focus; holds
+  still when motion is reduced.
+- `CylinderCarousel`: cards on a 3D cylinder spun by dragging (the front
+  card tracks the finger), coasting with the fling and snapping to a
+  card, arrow-key turns, an optional lightbox, configurable circumference
+  and perspective, and reduced-motion support.
 - `MorphCard`: a card whose box morphs on a spring into a centred dialog
   (corner radius, cross-fading content) over a tinted, blurred backdrop,
   and back. `MorphCardReveal` for content that drifts in after the morph,

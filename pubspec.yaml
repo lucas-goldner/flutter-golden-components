@@ -20,7 +20,9 @@ dev_dependencies:
 flutter:
   # Component sources ship as assets so the gallery can show and copy them.
   assets:
+    - lib/src/aurora_backdrop/
     - lib/src/blur_fade/
+    - lib/src/cylinder_carousel/
     - lib/src/digit_roll/
     - lib/src/endless_glide_grid/
     - lib/src/glide_highlight/
