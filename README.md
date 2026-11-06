@@ -37,6 +37,7 @@ for the full contributor rules.
 | 018 | `NotchCard` | A card whose image has labels notched into its corners with concave fillets; the image zooms and an action rises in on hover. |
 | 019 | `MetalButton` | A button wrapped in a ring of flowing liquid metal with a rolling glint and soft glow; chromatic, silver or gold presets. |
 | 020 | `PillSelect` | A pill-shaped select whose options open in a frosted popup with the chosen option over the field; icons, disabled options, keyboard. |
+| 021 | `HaloDropzone` | A file drop zone with a glowing halo along its edge and a light streak around the rim on hover or drag; dropped or browsed files spring in. |
 
 ## Usage
 

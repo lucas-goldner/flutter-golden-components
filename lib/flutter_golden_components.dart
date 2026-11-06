@@ -10,6 +10,7 @@ export 'src/endless_glide_grid/endless_glide_grid.dart';
 export 'src/glide_highlight/glide_highlight.dart';
 export 'src/globe/globe.dart';
 export 'src/goo_blobs/goo_blobs.dart';
+export 'src/halo_dropzone/halo_dropzone.dart';
 export 'src/jump_text/jump_text.dart';
 export 'src/kinetic_line/kinetic_line.dart';
 export 'src/live_feed/live_feed.dart';

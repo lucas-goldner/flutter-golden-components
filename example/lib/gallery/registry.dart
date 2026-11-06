@@ -6,6 +6,7 @@ import '../demos/cylinder_carousel_demo.dart';
 import '../demos/digit_roll_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
 import '../demos/glide_highlight_demo.dart';
+import '../demos/halo_dropzone_demo.dart';
 import '../demos/globe_demo.dart';
 import '../demos/goo_blobs_demo.dart';
 import '../demos/jump_text_demo.dart';
@@ -279,6 +280,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['input', 'menu', 'popover'],
     sourcePath: 'lib/src/pill_select/pill_select.dart',
     builder: (context) => const PillSelectDemo(),
+  ),
+  GalleryComponent(
+    number: 21,
+    slug: 'halo-dropzone',
+    name: 'Halo Dropzone',
+    description:
+        'A file drop zone with a glowing halo drifting along its edge and a streak of light '
+        'running around the rim on hover or drag. Files spring in once dropped or browsed.',
+    tags: const ['input', 'drag', 'ambient'],
+    sourcePath: 'lib/src/halo_dropzone/halo_dropzone.dart',
+    builder: (context) => const HaloDropzoneDemo(),
   ),
 ];
 

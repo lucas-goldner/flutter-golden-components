@@ -1,5 +1,11 @@
 ## Unreleased
 
+- `HaloDropzone`: a drop zone for `HaloFile`s (dragged in, or from an
+  `onBrowse` callback on tap, Enter or Space) with blurred color bands
+  drifting along its bottom edge, a streak of light around the rim on
+  hover, focus or drag, a bobbing upload icon and a success state whose
+  file thumbnails spring in; `HaloFileIcon` for typed document icons;
+  single or multiple files, custom palette, reduced-motion support.
 - `PillSelect`: a pill field that opens a frosted, blurred list of
   options, aligned so the chosen one sits over the field (or dropping
   below); icons, disabled options, placeholder and list label; hover and
