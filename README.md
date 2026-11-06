@@ -35,6 +35,7 @@ for the full contributor rules.
 | 016 | `CylinderCarousel` | Cards around a 3D cylinder you spin by dragging; it coasts, settles on a card, turns with arrow keys and opens cards in a lightbox. |
 | 017 | `AuroraBackdrop` | Soft curtains of aurora light drifting behind your content and gathering in one corner, on a light or dark sky. |
 | 018 | `NotchCard` | A card whose image has labels notched into its corners with concave fillets; the image zooms and an action rises in on hover. |
+| 019 | `MetalButton` | A button wrapped in a ring of flowing liquid metal with a rolling glint and soft glow; chromatic, silver or gold presets. |
 
 ## Usage
 

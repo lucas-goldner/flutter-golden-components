@@ -1,5 +1,10 @@
 ## Unreleased
 
+- `MetalButton`: a ring of flowing metal (chromatic, silver, gold or a
+  custom palette) with a counter-rotating glint and soft glow around a
+  filled, outline, soft or ghost surface; any height, width and radius
+  (pill or round); hover, press and keyboard focus (brightens the ring);
+  strength, ring width, speed, pause and reduced-motion support.
 - `NotchCard`: a card surface with hover state (pointer, or tap on
   touch) and a deepening shadow; `NotchCardMedia` with `NotchLabel`s set
   into any corner by concave fillets and a hover zoom;

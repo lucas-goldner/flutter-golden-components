@@ -15,6 +15,7 @@ export 'src/kinetic_line/kinetic_line.dart';
 export 'src/live_feed/live_feed.dart';
 export 'src/magnify_dock/magnify_dock.dart';
 export 'src/marquee/marquee.dart';
+export 'src/metal_button/metal_button.dart';
 export 'src/morph_card/morph_card.dart';
 export 'src/notch_card/notch_card.dart';
 export 'src/smooth_caret/smooth_caret_field.dart';

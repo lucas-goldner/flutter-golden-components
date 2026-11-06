@@ -33,6 +33,7 @@ flutter:
     - lib/src/live_feed/
     - lib/src/magnify_dock/
     - lib/src/marquee/
+    - lib/src/metal_button/
     - lib/src/morph_card/
     - lib/src/notch_card/
     - lib/src/smooth_caret/

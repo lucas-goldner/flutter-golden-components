@@ -13,6 +13,7 @@ import '../demos/kinetic_line_demo.dart';
 import '../demos/live_feed_demo.dart';
 import '../demos/magnify_dock_demo.dart';
 import '../demos/marquee_demo.dart';
+import '../demos/metal_button_demo.dart';
 import '../demos/morph_card_demo.dart';
 import '../demos/notch_card_demo.dart';
 import '../demos/smooth_caret_demo.dart';
@@ -255,6 +256,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['card', 'hover', 'layout'],
     sourcePath: 'lib/src/notch_card/notch_card.dart',
     builder: (context) => const NotchCardDemo(),
+  ),
+  GalleryComponent(
+    number: 19,
+    slug: 'metal-button',
+    name: 'Metal Button',
+    description:
+        'A button wrapped in a ring of slowly flowing liquid metal, with a rolling glint and a '
+        'soft glow. Chromatic, silver or gold, four surface styles, pill or round.',
+    tags: const ['button', 'shader', 'ambient'],
+    sourcePath: 'lib/src/metal_button/metal_button.dart',
+    builder: (context) => const MetalButtonDemo(),
   ),
 ];
 
