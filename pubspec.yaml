@@ -38,6 +38,7 @@ flutter:
     - lib/src/morph_card/
     - lib/src/notch_card/
     - lib/src/pill_select/
+    - lib/src/shapeshift_drawer/
     - lib/src/smooth_caret/
     - lib/src/step_flow/
     - lib/src/stretch_slider/

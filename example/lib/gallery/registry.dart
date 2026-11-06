@@ -18,6 +18,7 @@ import '../demos/metal_button_demo.dart';
 import '../demos/morph_card_demo.dart';
 import '../demos/notch_card_demo.dart';
 import '../demos/pill_select_demo.dart';
+import '../demos/shapeshift_drawer_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 import '../demos/step_flow_demo.dart';
 import '../demos/stretch_slider_demo.dart';
@@ -291,6 +292,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['input', 'drag', 'ambient'],
     sourcePath: 'lib/src/halo_dropzone/halo_dropzone.dart',
     builder: (context) => const HaloDropzoneDemo(),
+  ),
+  GalleryComponent(
+    number: 22,
+    slug: 'shapeshift-drawer',
+    name: 'Shapeshift Drawer',
+    description:
+        'A bottom drawer that changes shape as it moves between views: content cross-fades '
+        'while the sheet resizes to fit. Drag down, tap outside or press Escape to dismiss.',
+    tags: const ['sheet', 'navigation', 'dialog'],
+    sourcePath: 'lib/src/shapeshift_drawer/shapeshift_drawer.dart',
+    builder: (context) => const ShapeshiftDrawerDemo(),
   ),
 ];
 

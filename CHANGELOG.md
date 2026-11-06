@@ -1,5 +1,11 @@
 ## Unreleased
 
+- `ShapeshiftDrawer`: a floating bottom sheet over a dimmed backdrop
+  with named views; `ShapeshiftDrawer.of(context)` opens, closes, shows
+  a view (content cross-fades while the sheet's height eases) and goes
+  back. Drag down, tap the backdrop, Escape or a close button dismiss
+  it; `ShapeshiftDrawerHeader`, `ShapeshiftDrawerTile` and
+  `ShapeshiftDrawerAction` build views; reduced-motion support.
 - `HaloDropzone`: a drop zone for `HaloFile`s (dragged in, or from an
   `onBrowse` callback on tap, Enter or Space) with blurred color bands
   drifting along its bottom edge, a streak of light around the rim on

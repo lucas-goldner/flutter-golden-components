@@ -20,6 +20,7 @@ export 'src/metal_button/metal_button.dart';
 export 'src/morph_card/morph_card.dart';
 export 'src/notch_card/notch_card.dart';
 export 'src/pill_select/pill_select.dart';
+export 'src/shapeshift_drawer/shapeshift_drawer.dart';
 export 'src/smooth_caret/smooth_caret_field.dart';
 export 'src/step_flow/step_flow.dart';
 export 'src/stretch_slider/stretch_slider.dart';
