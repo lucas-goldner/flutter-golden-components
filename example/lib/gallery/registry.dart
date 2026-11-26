@@ -16,6 +16,7 @@ import '../demos/kinetic_line_demo.dart';
 import '../demos/live_feed_demo.dart';
 import '../demos/magnify_dock_demo.dart';
 import '../demos/marquee_demo.dart';
+import '../demos/melt_search_demo.dart';
 import '../demos/metal_button_demo.dart';
 import '../demos/morph_card_demo.dart';
 import '../demos/notch_card_demo.dart';
@@ -351,6 +352,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['navigation', 'dropdown', 'hover'],
     sourcePath: 'lib/src/glide_menu/glide_menu.dart',
     builder: (context) => const GlideMenuDemo(),
+  ),
+  GalleryComponent(
+    number: 27,
+    slug: 'melt-search',
+    name: 'Melt Search',
+    description:
+        'A search pill that springs open into a field while a round search button melts off its '
+        'end, joined by a gooey neck that stretches and snaps.',
+    tags: const ['input', 'goo', 'animation'],
+    sourcePath: 'lib/src/melt_search/melt_search.dart',
+    builder: (context) => const MeltSearchDemo(),
   ),
 ];
 

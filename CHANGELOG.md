@@ -1,5 +1,10 @@
 ## Unreleased
 
+- `MeltSearch`: a search pill that springs open into a text field while
+  a round search button melts off its end, joined by a gooey neck that
+  stretches and snaps; the button submits (or closes when empty), and
+  losing focus with no text or Escape melts it back. Goo, bounce, size
+  and colour settings; reduced-motion support.
 - `GlideMenu`: a row of tabs sharing one dropdown in the overlay; moving
   between tabs glides the panel over and resizes it while the content
   slides in from the side you moved toward, with a nub pointing at the

@@ -43,6 +43,7 @@ for the full contributor rules.
 | 024 | `WaveBackdrop` | Thick, soft waves of colour flowing slowly behind your content. |
 | 025 | `ImageHoverList` | Large text links that reveal an image trailing the pointer, with sliding letters and an arrow. |
 | 026 | `GlideMenu` | Tabs with one dropdown that glides and resizes between them, sliding content in from the side. |
+| 027 | `MeltSearch` | A search pill that springs open while a round button melts off its end in a gooey neck. |
 
 ## Usage
 
