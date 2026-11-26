@@ -43,3 +43,4 @@ flutter:
     - lib/src/stretch_slider/
     - lib/src/swipe_deck/
     - lib/src/tilt_card/
+    - lib/src/wave_backdrop/

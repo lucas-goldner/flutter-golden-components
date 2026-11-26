@@ -22,6 +22,7 @@ import '../demos/smooth_caret_demo.dart';
 import '../demos/step_flow_demo.dart';
 import '../demos/swipe_deck_demo.dart';
 import '../demos/tilt_card_demo.dart';
+import '../demos/wave_backdrop_demo.dart';
 import '../demos/stretch_slider_demo.dart';
 
 /// One component listed in the gallery.
@@ -315,6 +316,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['carousel', 'gesture', 'media'],
     sourcePath: 'lib/src/swipe_deck/swipe_deck.dart',
     builder: (context) => const SwipeDeckDemo(),
+  ),
+  GalleryComponent(
+    number: 24,
+    slug: 'wave-backdrop',
+    name: 'Wave Backdrop',
+    description:
+        'Thick, soft waves of colour flowing slowly behind your content, crossing and braiding '
+        'as they go.',
+    tags: const ['background', 'animation', 'canvas'],
+    sourcePath: 'lib/src/wave_backdrop/wave_backdrop.dart',
+    builder: (context) => const WaveBackdropDemo(),
   ),
 ];
 

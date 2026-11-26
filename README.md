@@ -40,6 +40,7 @@ for the full contributor rules.
 | 021 | `ShapeshiftDrawer` | A bottom drawer that changes shape between views: content cross-fades while the sheet resizes. Back navigation, drag or Escape to dismiss. |
 | 022 | `TiltCard` | A card that tilts in 3D toward the pointer, with layers floating at different depths and a sliding glare. |
 | 023 | `SwipeDeck` | A carousel you swipe through one slide at a time; neighbours shrink and dim, dots follow the drag, optional autoplay. |
+| 024 | `WaveBackdrop` | Thick, soft waves of colour flowing slowly behind your content. |
 
 ## Usage
 

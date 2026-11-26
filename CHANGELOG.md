@@ -1,5 +1,9 @@
 ## Unreleased
 
+- `WaveBackdrop`: one broad, blurred wave per colour flowing behind a
+  child, each mixing slow ripples of its own so they cross and braid;
+  width, blur, opacity, swing, height and speed settings; holds still
+  with reduced motion or a speed of 0.
 - `SwipeDeck`: slides that follow a drag and snap one at a time, with
   neighbours peeking in, shrunk and dimmed; dots that stretch with the
   drag and jump on tap; arrow keys; optional autoplay that pauses while

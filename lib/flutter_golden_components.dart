@@ -25,3 +25,4 @@ export 'src/step_flow/step_flow.dart';
 export 'src/stretch_slider/stretch_slider.dart';
 export 'src/swipe_deck/swipe_deck.dart';
 export 'src/tilt_card/tilt_card.dart';
+export 'src/wave_backdrop/wave_backdrop.dart';
