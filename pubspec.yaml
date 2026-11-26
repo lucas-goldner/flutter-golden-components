@@ -29,6 +29,7 @@ flutter:
     - lib/src/globe/
     - lib/src/goo_blobs/
     - lib/src/halo_dropzone/
+    - lib/src/image_hover_list/
     - lib/src/jump_text/
     - lib/src/kinetic_line/
     - lib/src/live_feed/

@@ -9,6 +9,7 @@ import '../demos/glide_highlight_demo.dart';
 import '../demos/halo_dropzone_demo.dart';
 import '../demos/globe_demo.dart';
 import '../demos/goo_blobs_demo.dart';
+import '../demos/image_hover_list_demo.dart';
 import '../demos/jump_text_demo.dart';
 import '../demos/kinetic_line_demo.dart';
 import '../demos/live_feed_demo.dart';
@@ -327,6 +328,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['background', 'animation', 'canvas'],
     sourcePath: 'lib/src/wave_backdrop/wave_backdrop.dart',
     builder: (context) => const WaveBackdropDemo(),
+  ),
+  GalleryComponent(
+    number: 25,
+    slug: 'image-hover-list',
+    name: 'Image Hover List',
+    description:
+        'Large text links that reveal an image under the pointer; it trails and leans as you '
+        'move, while the letters slide over and an arrow slides in.',
+    tags: const ['navigation', 'hover', 'media'],
+    sourcePath: 'lib/src/image_hover_list/image_hover_list.dart',
+    builder: (context) => const ImageHoverListDemo(),
   ),
 ];
 

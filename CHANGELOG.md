@@ -1,5 +1,10 @@
 ## Unreleased
 
+- `ImageHoverList`: large text links that reveal an image behind the
+  text under the pointer; it grows in, trails with a soft lag and leans
+  into the move, and swaps in place between links. Letters slide over
+  one after another into a highlight colour and an arrow slides in.
+  Keyboard focus and touch show the image too; reduced-motion support.
 - `WaveBackdrop`: one broad, blurred wave per colour flowing behind a
   child, each mixing slow ripples of its own so they cross and braid;
   width, blur, opacity, swing, height and speed settings; holds still
