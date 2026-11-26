@@ -20,6 +20,7 @@ import '../demos/notch_card_demo.dart';
 import '../demos/shapeshift_drawer_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 import '../demos/step_flow_demo.dart';
+import '../demos/tilt_card_demo.dart';
 import '../demos/stretch_slider_demo.dart';
 
 /// One component listed in the gallery.
@@ -291,6 +292,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['sheet', 'navigation', 'dialog'],
     sourcePath: 'lib/src/shapeshift_drawer/shapeshift_drawer.dart',
     builder: (context) => const ShapeshiftDrawerDemo(),
+  ),
+  GalleryComponent(
+    number: 22,
+    slug: 'tilt-card',
+    name: 'Tilt Card',
+    description:
+        'A card that tilts in 3D toward the pointer on a soft spring, with layers floating at '
+        'different depths and a glare sliding across it. Follows a finger on touch screens.',
+    tags: const ['card', '3d', 'hover'],
+    sourcePath: 'lib/src/tilt_card/tilt_card.dart',
+    builder: (context) => const TiltCardDemo(),
   ),
 ];
 

@@ -1,5 +1,9 @@
 ## Unreleased
 
+- `TiltCard`: tilts in 3D toward the pointer or a finger through smooth
+  following, rises slightly while engaged, eases flat on exit, with a
+  glare opposite the pointer and `TiltLayer`s that float at a chosen
+  depth; stays flat when motion is reduced.
 - `ShapeshiftDrawer`: a floating bottom sheet over a dimmed backdrop
   with named views; `ShapeshiftDrawer.of(context)` opens, closes, shows
   a view (content cross-fades while the sheet's height eases) and goes
