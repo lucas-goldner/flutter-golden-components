@@ -8,6 +8,7 @@ export 'src/cylinder_carousel/cylinder_carousel.dart';
 export 'src/digit_roll/digit_roll.dart';
 export 'src/endless_glide_grid/endless_glide_grid.dart';
 export 'src/glide_highlight/glide_highlight.dart';
+export 'src/glide_menu/glide_menu.dart';
 export 'src/globe/globe.dart';
 export 'src/goo_blobs/goo_blobs.dart';
 export 'src/halo_dropzone/halo_dropzone.dart';

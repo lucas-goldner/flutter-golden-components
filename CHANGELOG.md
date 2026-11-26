@@ -1,5 +1,10 @@
 ## Unreleased
 
+- `GlideMenu`: a row of tabs sharing one dropdown in the overlay; moving
+  between tabs glides the panel over and resizes it while the content
+  slides in from the side you moved toward, with a nub pointing at the
+  open tab. Closes after a short delay, on a tap outside or on Escape;
+  arrow down opens from the keyboard; reduced-motion support.
 - `ImageHoverList`: large text links that reveal an image behind the
   text under the pointer; it grows in, trails with a soft lag and leans
   into the move, and swaps in place between links. Letters slide over

@@ -6,6 +6,7 @@ import '../demos/cylinder_carousel_demo.dart';
 import '../demos/digit_roll_demo.dart';
 import '../demos/endless_glide_grid_demo.dart';
 import '../demos/glide_highlight_demo.dart';
+import '../demos/glide_menu_demo.dart';
 import '../demos/halo_dropzone_demo.dart';
 import '../demos/globe_demo.dart';
 import '../demos/goo_blobs_demo.dart';
@@ -339,6 +340,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['navigation', 'hover', 'media'],
     sourcePath: 'lib/src/image_hover_list/image_hover_list.dart',
     builder: (context) => const ImageHoverListDemo(),
+  ),
+  GalleryComponent(
+    number: 26,
+    slug: 'glide-menu',
+    name: 'Glide Menu',
+    description:
+        'A row of tabs with one dropdown that glides between them, resizing to each panel while '
+        'the content slides in from the side you moved toward.',
+    tags: const ['navigation', 'dropdown', 'hover'],
+    sourcePath: 'lib/src/glide_menu/glide_menu.dart',
+    builder: (context) => const GlideMenuDemo(),
   ),
 ];
 

@@ -42,6 +42,7 @@ for the full contributor rules.
 | 023 | `SwipeDeck` | A carousel you swipe through one slide at a time; neighbours shrink and dim, dots follow the drag, optional autoplay. |
 | 024 | `WaveBackdrop` | Thick, soft waves of colour flowing slowly behind your content. |
 | 025 | `ImageHoverList` | Large text links that reveal an image trailing the pointer, with sliding letters and an arrow. |
+| 026 | `GlideMenu` | Tabs with one dropdown that glides and resizes between them, sliding content in from the side. |
 
 ## Usage
 
