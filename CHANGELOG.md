@@ -1,5 +1,10 @@
 ## Unreleased
 
+- `SwipeDeck`: slides that follow a drag and snap one at a time, with
+  neighbours peeking in, shrunk and dimmed; dots that stretch with the
+  drag and jump on tap; arrow keys; optional autoplay that pauses while
+  dragging and wraps (or stops) at the end; fits a limited height;
+  reduced-motion support.
 - `TiltCard`: tilts in 3D toward the pointer or a finger through smooth
   following, rises slightly while engaged, eases flat on exit, with a
   glare opposite the pointer and `TiltLayer`s that float at a chosen

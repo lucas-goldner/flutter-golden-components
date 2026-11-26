@@ -41,4 +41,5 @@ flutter:
     - lib/src/smooth_caret/
     - lib/src/step_flow/
     - lib/src/stretch_slider/
+    - lib/src/swipe_deck/
     - lib/src/tilt_card/

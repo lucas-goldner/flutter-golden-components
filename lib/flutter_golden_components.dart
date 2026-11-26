@@ -23,4 +23,5 @@ export 'src/shapeshift_drawer/shapeshift_drawer.dart';
 export 'src/smooth_caret/smooth_caret_field.dart';
 export 'src/step_flow/step_flow.dart';
 export 'src/stretch_slider/stretch_slider.dart';
+export 'src/swipe_deck/swipe_deck.dart';
 export 'src/tilt_card/tilt_card.dart';

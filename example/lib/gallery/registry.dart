@@ -20,6 +20,7 @@ import '../demos/notch_card_demo.dart';
 import '../demos/shapeshift_drawer_demo.dart';
 import '../demos/smooth_caret_demo.dart';
 import '../demos/step_flow_demo.dart';
+import '../demos/swipe_deck_demo.dart';
 import '../demos/tilt_card_demo.dart';
 import '../demos/stretch_slider_demo.dart';
 
@@ -303,6 +304,17 @@ final List<GalleryComponent> galleryComponents = [
     tags: const ['card', '3d', 'hover'],
     sourcePath: 'lib/src/tilt_card/tilt_card.dart',
     builder: (context) => const TiltCardDemo(),
+  ),
+  GalleryComponent(
+    number: 23,
+    slug: 'swipe-deck',
+    name: 'Swipe Deck',
+    description:
+        'A carousel you swipe through one slide at a time: slides follow your finger and snap, '
+        'neighbours shrink and dim, dots track the drag, and it can advance on its own.',
+    tags: const ['carousel', 'gesture', 'media'],
+    sourcePath: 'lib/src/swipe_deck/swipe_deck.dart',
+    builder: (context) => const SwipeDeckDemo(),
   ),
 ];
 
